@@ -1,4 +1,5 @@
 import { client } from "./client.js";
+import { createUser } from "./users.js";
 
 const dropTables = async () => {
   try {
@@ -40,6 +41,7 @@ const createTables = async () => {
         PRIMARY KEY (item_id, tag_id)
         )
         `);
+        
   } catch (e) {
     console.log(e);
   }
@@ -53,6 +55,8 @@ const syncAndSeed = async () => {
     console.log("Tables dropped");
     await createTables();
     console.log("Tables created");
+    await createUser()
+    console.log('User created')
     client.end();
   } catch (error) {
     console.log(error);
