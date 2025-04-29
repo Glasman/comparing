@@ -18,14 +18,14 @@ const createTables = async () => {
     await client.query(`
         CREATE TABLE users (
          id SERIAL PRIMARY KEY,
-         username VARCHAR(30),
-         password VARCHAR(30)
+         username VARCHAR(30) NOT NULL,
+         password VARCHAR(30) NOT NULL
         );
 
         CREATE TABLE items (
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
-        image_url TEXT,
+        image_url TEXT NOT NULL,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
         );
 
