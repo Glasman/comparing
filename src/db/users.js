@@ -1,10 +1,10 @@
 import { client } from "./client.js";
 
-const createUser = async () => {
+const createUser = async (name, password) => {
   try {
     await client.query(`
            INSERT INTO users (username, password) 
-           VALUES ('Moe', 'Moe')
+           VALUES ('${name}', '${password}')
             `);
   } catch (error) {
     console.log(error);

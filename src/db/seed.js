@@ -55,7 +55,9 @@ const syncAndSeed = async () => {
     console.log("Tables dropped");
     await createTables();
     console.log("Tables created");
-    await createUser()
+    await createUser('Brick', 'Red')
+    await createUser('Grass', 'Green')
+    await createUser('Sunny', 'Yellow')
     console.log('User created')
     client.end();
   } catch (error) {
