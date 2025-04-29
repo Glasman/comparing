@@ -3,7 +3,9 @@ import { client } from "./client.js";
 const dropTables = async () => {
   try {
     await client.query(`
+            DROP TABLE IF EXISTS item_tags;
             DROP TABLE IF EXISTS items;
+            DROP TABLE IF EXISTS tags;
             DROP TABLE IF EXISTS users;
             `);
   } catch (error) {
@@ -24,8 +26,19 @@ const createTables = async () => {
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
         image_url TEXT,
-        user_id INTEGER REFERENCES users(id) NOT NULL
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
         );
+
+        CREATE TABLE tags (
+        id SERIAL PRIMARY KEY,
+        name TEXT UNIQUE NOT NULL
+        );
+
+        CREATE TABLE item_tags (
+        item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+        tag_id INTEGER REFERENCES tags(id) ON DELETE CASCADE,
+        PRIMARY KEY (item_id, tag_id)
+        )
         `);
   } catch (e) {
     console.log(e);
