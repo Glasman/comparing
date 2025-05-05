@@ -13,7 +13,6 @@ function App() {
         username,
         password
       });
-      // const responseJson = await response.json();
       console.log("User being created");
       console.log(response.data);
     } catch (error) {
@@ -28,7 +27,6 @@ function App() {
         username,
         password
       });
-      // const responseJson = await response.json();
       console.log("User being checked");
       console.log(response.data);
     } catch (error) {
@@ -41,7 +39,6 @@ function App() {
     <>
       <h1>Comparing Things</h1>
       <>
-        {/* <form onSubmit={createUser}> */}
         <form>
           <input
             placeholder="username"
