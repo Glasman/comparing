@@ -7,7 +7,6 @@ function App() {
   const [password, setPassword] = useState("");
 
   const createUser = async (event) => {
-    event.preventDefault();
     try {
       const response = await axios.post("/createUser", {
         username,
