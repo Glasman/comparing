@@ -13,9 +13,9 @@ function App() {
         username,
         password
       });
-      const responseJson = await response.json();
+      // const responseJson = await response.json();
       console.log("User being created");
-      console.log(responseJson);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -28,9 +28,9 @@ function App() {
         username,
         password
       });
-      const responseJson = await response.json();
+      // const responseJson = await response.json();
       console.log("User being checked");
-      console.log(responseJson);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
