@@ -1,5 +1,6 @@
 import { client } from "./client.js";
 import { createUser } from "./users.js";
+import { createItem } from "./items.js";
 
 const dropTables = async () => {
   try {
@@ -27,6 +28,7 @@ const createTables = async () => {
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
         image_url TEXT NOT NULL,
+        description TEXT NOT NULL,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
         );
 
@@ -41,7 +43,6 @@ const createTables = async () => {
         PRIMARY KEY (item_id, tag_id)
         )
         `);
-        
   } catch (e) {
     console.log(e);
   }
@@ -55,10 +56,23 @@ const syncAndSeed = async () => {
     console.log("Tables dropped");
     await createTables();
     console.log("Tables created");
-    await createUser('Brick', 'Red')
-    await createUser('Grass', 'Green')
-    await createUser('Sunny', 'Yellow')
-    console.log('User created')
+    const brick = await createUser("Brick", "Red");
+    const grass = await createUser("Grass", "Green");
+    await createUser("Sunny", "Yellow");
+    console.log("Users created");
+    await createItem(
+      "White rice",
+      "https://i.imgur.com/hoLtPSV.jpeg",
+      "Plain ol white rice",
+      brick.id
+    );
+    await createItem(
+      "Brown rice",
+      "https://i.imgur.com/3f5TX4s.png",
+      "Nutrient rich brown rice",
+      grass.id
+    );
+    console.log("Items created");
     client.end();
   } catch (error) {
     console.log(error);

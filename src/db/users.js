@@ -2,24 +2,31 @@ import { client } from "./client.js";
 
 const createUser = async (name, password) => {
   try {
-    await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(
+      `
            INSERT INTO users (username, password) 
-           VALUES ('${name}', '${password}')
-            `);
+           VALUES ($1, $2)
+           RETURNING *;
+            `,
+      [name, password]
+    );
+    return user;
   } catch (error) {
     console.log(error);
   }
 };
-const getUser = async (name, password) => {
+const getUser = async (username, password) => {
   try {
-    await client.query(`
+    const user = await client.query(`
            SELECT * FROM users
            WHERE username='${username}' AND password='${password}
             `);
+    return user;
   } catch (error) {
     console.log(error);
   }
 };
-
 
 export { createUser, getUser };
