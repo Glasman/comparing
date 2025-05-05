@@ -10,6 +10,7 @@
     "seed:dev": "nodemon src/db/seed.js"
   },
   "dependencies": {
+    "axios": "^1.9.0",
     "express": "^4.18.2",
     "pg": "^8.15.6",
     "react": "^18.2.0",

@@ -9,18 +9,33 @@ function App() {
     event.preventDefault();
     try {
       const response = await fetch("/createUser");
-      const responseJson = await response.json()
+      const responseJson = await response.json();
       console.log("User being created");
-      console.log(responseJson)
+      console.log(responseJson);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const getUser = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/getUser");
+      const responseJson = await response.json();
+      console.log("User being checked");
+      console.log(responseJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <>
       <h1>Comparing Things</h1>
       <>
-        <form onSubmit={createUser}>
+        {/* <form onSubmit={createUser}> */}
+        <form>
           <input
             placeholder="username"
             value={username}
@@ -31,7 +46,8 @@ function App() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button>Create User</button>
+          <button onClick={createUser}>Create User</button>
+          <button onClick={getUser}>Login</button>
         </form>
       </>
     </>

@@ -10,6 +10,16 @@ const createUser = async (name, password) => {
     console.log(error);
   }
 };
+const getUser = async (name, password) => {
+  try {
+    await client.query(`
+           SELECT * FROM users
+           WHERE username='${username}' AND password='${password}
+            `);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
-export { createUser };
+export { createUser, getUser };

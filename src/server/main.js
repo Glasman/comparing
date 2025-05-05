@@ -1,5 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
+import { createUser } from "../db/users.js";
 
 const app = express();
 
@@ -9,6 +10,11 @@ app.get("/hello", (req, res) => {
 
 app.get("/createUser", (req, res) => {
   res.send({ value: "making user" });
+  console.log("the http get request is hitting the API");
+});
+
+app.get("/getUser", (req, res) => {
+  res.send({ value: "checking user" });
   console.log("the http get request is hitting the API");
 });
 
