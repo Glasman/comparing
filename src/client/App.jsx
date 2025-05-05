@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./App.css";
 
 function App() {
@@ -8,7 +9,10 @@ function App() {
   const createUser = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/createUser");
+      const response = await axios.post("/createUser", {
+        username,
+        password
+      });
       const responseJson = await response.json();
       console.log("User being created");
       console.log(responseJson);
@@ -20,7 +24,10 @@ function App() {
   const getUser = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/getUser");
+      const response = await axios.post("/getUser", {
+        username,
+        password
+      });
       const responseJson = await response.json();
       console.log("User being checked");
       console.log(responseJson);

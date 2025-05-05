@@ -4,16 +4,20 @@ import { createUser } from "../db/users.js";
 
 const app = express();
 
+// This line is necessary to parse JSON bodies
+app.use(express.json());
+
 app.get("/hello", (req, res) => {
   res.send("Hello Vite + React!");
 });
 
-app.get("/createUser", (req, res) => {
+app.post("/createUser", (req, res) => {
   res.send({ value: "making user" });
   console.log("the http get request is hitting the API");
 });
 
-app.get("/getUser", (req, res) => {
+app.post("/getUser", (req, res) => {
+  console.log({value: req.body});
   res.send({ value: "checking user" });
   console.log("the http get request is hitting the API");
 });
