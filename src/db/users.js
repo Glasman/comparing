@@ -17,16 +17,28 @@ const createUser = async (name, password, isAdmin = false) => {
     console.log(error);
   }
 };
+
+const getAllUsers = async () => {
+  try {
+    const { rows } = await client.query(`
+           SELECT * FROM users;
+            `);
+    return rows;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getUser = async (username, password) => {
   try {
     const user = await client.query(`
-           SELECT * FROM users
-           WHERE username='${username}' AND password='${password}
-            `);
+             SELECT * FROM users
+             WHERE username='${username}' AND password='${password}
+              `);
     return user;
   } catch (error) {
     console.log(error);
   }
 };
 
-export { createUser, getUser };
+export { createUser, getUser, getAllUsers };

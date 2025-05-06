@@ -68,8 +68,7 @@ const syncAndSeed = async () => {
       "White rice",
       "https://i.imgur.com/hoLtPSV.jpeg",
       "Plain ol white rice",
-      mark.id,
-      true
+      mark.id
     );
     await createItem(
       "Brown rice",
