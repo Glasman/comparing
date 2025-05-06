@@ -29,7 +29,7 @@ const createTables = async () => {
         name TEXT NOT NULL,
         image_url TEXT NOT NULL,
         description TEXT NOT NULL,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
+        item_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
         );
 
         CREATE TABLE tags (
