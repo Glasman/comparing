@@ -21,7 +21,8 @@ const createTables = async () => {
         CREATE TABLE users (
          id SERIAL PRIMARY KEY,
          username VARCHAR(30) NOT NULL,
-         password VARCHAR(30) NOT NULL
+         password VARCHAR(30) NOT NULL,
+         isAdmin boolean DEFAULT FALSE
         );
 
         CREATE TABLE items (
@@ -56,24 +57,26 @@ const syncAndSeed = async () => {
     console.log("Tables dropped");
     await createTables();
     console.log("Tables created");
-    const brick = await createUser("Brick", "Red");
-    const grass = await createUser("Grass", "Green");
+    await createUser("Brick", "Red");
+    await createUser("Grass", "Green");
     await createUser("Sunny", "Yellow");
+    const mark = await createUser("Mark", "password", true);
     console.log("Users created");
     const whiteRice = await createItem(
       "White rice",
       "https://i.imgur.com/hoLtPSV.jpeg",
       "Plain ol white rice",
-      brick.id
+      mark.id,
+      true
     );
     await createItem(
       "Brown rice",
       "https://i.imgur.com/3f5TX4s.png",
       "Nutrient rich brown rice",
-      grass.id
+      mark.id
     );
     console.log("Items created");
-    console.log("white rice:", whiteRice)
+    console.log("white rice:", whiteRice);
     client.end();
   } catch (error) {
     console.log(error);

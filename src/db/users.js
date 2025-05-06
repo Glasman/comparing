@@ -1,16 +1,16 @@
 import { client } from "./client.js";
 
-const createUser = async (name, password) => {
+const createUser = async (name, password, isAdmin = false) => {
   try {
     const {
       rows: [user],
     } = await client.query(
       `
-           INSERT INTO users (username, password) 
-           VALUES ($1, $2)
+           INSERT INTO users (username, password, isAdmin) 
+           VALUES ($1, $2, $3)
            RETURNING *;
             `,
-      [name, password]
+      [name, password, isAdmin]
     );
     return user;
   } catch (error) {
