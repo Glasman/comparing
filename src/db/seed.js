@@ -77,10 +77,10 @@ const syncAndSeed = async () => {
       mark.id
     );
     console.log("Items created");
-    const food = await createTag("Food")
-    await createTag("Cars")
+    const food = await createTag("Food");
+    await createTag("Cars");
     console.log("white rice:", whiteRice);
-    await addTagToItem(whiteRice.id, food.id)
+    await addTagToItem(whiteRice.id, food.id);
     client.end();
   } catch (error) {
     console.log(error);
