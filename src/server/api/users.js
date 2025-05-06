@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
   try {
     console.log("GET /api/users route hit");
     const users = await getAllUsers();
-    console.log(users);
     res.status(200).send(users);
   } catch (error) {
     console.error("Failed to get users:", error);

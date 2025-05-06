@@ -1,8 +1,30 @@
 import express from "express";
 const router = express.Router();
+import { getAllItems, getItemByID } from "../../db/items.js";
 
-router.get("/test", (req, res) => {
-    res.send("API route for items is working!");
+// /api/items/
+  router.get("/", async (req, res) => {
+    try {
+      console.log("GET /api/items route hit");
+      const items = await getAllItems();
+      console.log(items);
+      res.status(200).send(items);
+    } catch (error) {
+      console.error("Failed to get items:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   });
+
+  router.get("/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const item = await getItemByID(id);
+      res.status(200).send(item);
+    } catch (error) {
+      console.error("Failed to get item:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+  
 
 export default router;
