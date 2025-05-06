@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     console.log("GET /api/users route hit");
     const users = await getAllUsers();
     console.log(users);
-    res.json(users);
+    res.status(200).send(users);
   } catch (error) {
     console.error("Failed to get users:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -18,8 +18,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await getUserByID(id)
-    console.log(user)
+    const user = await getUserByID(id);
+    res.status(200).send(user);
   } catch (error) {
     console.error("Failed to get user:", error);
     res.status(500).json({ error: "Internal Server Error" });
