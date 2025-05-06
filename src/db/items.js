@@ -6,7 +6,7 @@ const createItem = async (name, image_url, description, item_id) => {
       rows: [item],
     } = await client.query(
       `
-             INSERT INTO items (name, image_url, description, item_id) 
+             INSERT INTO items (name, image_url, description, user_id) 
              VALUES ($1, $2, $3, $4)
              RETURNING *
               `,

@@ -29,7 +29,7 @@ const createTables = async () => {
         name TEXT NOT NULL,
         image_url TEXT NOT NULL,
         description TEXT NOT NULL,
-        item_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
         );
 
         CREATE TABLE tags (
@@ -60,7 +60,7 @@ const syncAndSeed = async () => {
     const grass = await createUser("Grass", "Green");
     await createUser("Sunny", "Yellow");
     console.log("Users created");
-    await createItem(
+    const whiteRice = await createItem(
       "White rice",
       "https://i.imgur.com/hoLtPSV.jpeg",
       "Plain ol white rice",
@@ -73,6 +73,7 @@ const syncAndSeed = async () => {
       grass.id
     );
     console.log("Items created");
+    console.log("white rice:", whiteRice)
     client.end();
   } catch (error) {
     console.log(error);
