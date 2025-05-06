@@ -29,11 +29,13 @@ const getAllUsers = async () => {
   }
 };
 
-const getUser = async (username, password) => {
+const getUserByID = async (id) => {
   try {
-    const user = await client.query(`
+    const {
+      rows: [user],
+    } = await client.query(`
              SELECT * FROM users
-             WHERE username='${username}' AND password='${password}
+             WHERE id='${id}' 
               `);
     return user;
   } catch (error) {
@@ -41,4 +43,17 @@ const getUser = async (username, password) => {
   }
 };
 
-export { createUser, getUser, getAllUsers };
+//WIP
+const getUser = async (username, password) => {
+  try {
+    const user = await client.query(`
+               SELECT * FROM users
+               WHERE username='${username}' AND password='${password}
+                `);
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { createUser, getUser, getAllUsers, getUserByID };
