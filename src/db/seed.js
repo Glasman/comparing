@@ -1,6 +1,8 @@
 import { client } from "./client.js";
 import { createUser } from "./users.js";
 import { createItem } from "./items.js";
+import { createTag } from "./tags.js";
+import { addTagToItem } from "./item_tag.js";
 
 const dropTables = async () => {
   try {
@@ -76,7 +78,10 @@ const syncAndSeed = async () => {
       mark.id
     );
     console.log("Items created");
+    const food = await createTag("Food")
+    await createTag("Cars")
     console.log("white rice:", whiteRice);
+    await addTagToItem(whiteRice.id, food.id)
     client.end();
   } catch (error) {
     console.log(error);
