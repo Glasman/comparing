@@ -23,7 +23,7 @@ const createTables = async () => {
         CREATE TABLE users (
          id SERIAL PRIMARY KEY,
          username VARCHAR(30) NOT NULL,
-         password VARCHAR(30) NOT NULL,
+         password TEXT NOT NULL,
          isAdmin boolean DEFAULT FALSE
         );
 
@@ -53,7 +53,8 @@ const createTables = async () => {
 
 const syncAndSeed = async () => {
   try {
-    await client.connect();
+    // await client.connect();
+    // moved this to client.js
     console.log("Connected to DB");
     await dropTables();
     console.log("Tables dropped");
