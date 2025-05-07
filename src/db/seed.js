@@ -79,7 +79,6 @@ const syncAndSeed = async () => {
     console.log("Items created");
     const food = await createTag("Food");
     await createTag("Cars");
-    console.log("white rice:", whiteRice);
     await addTagToItem(whiteRice.id, food.id);
     client.end();
   } catch (error) {
