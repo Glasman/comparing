@@ -1,6 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import { createUser, getUser } from "../../db/users.js";
+import { createUser, getUser, getUserByUsername } from "../../db/users.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 // import pkg from "jsonwebtoken";
@@ -16,6 +16,12 @@ router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
   try {
     console.log(req.body);
+    const existingUser = await getUserByUsername(username, password);
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ message: "Username already taken (case-sensitive)" });
+    }
     const user = await createUser(username, hashedPassword);
     const token = jwt.sign(
       { id: user.id, username: user.username },
@@ -31,7 +37,7 @@ router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const token = await getUser(username, password);
-    console.log(token)
+    console.log(token);
     res.status(200).send({ token });
   } catch (error) {
     console.log(error);

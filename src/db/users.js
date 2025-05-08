@@ -45,7 +45,20 @@ const getUserByID = async (id) => {
   }
 };
 
-//WIP
+const getUserByUsername = async (username) => {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `SELECT * FROM users WHERE LOWER(username) = LOWER($1)`,
+      [username]
+    );
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getUser = async (username, password) => {
   try {
     const {
@@ -83,4 +96,4 @@ const getUser = async (username, password) => {
   }
 };
 
-export { createUser, getUser, getAllUsers, getUserByID };
+export { createUser, getUser, getAllUsers, getUserByID, getUserByUsername };
