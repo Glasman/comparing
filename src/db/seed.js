@@ -27,7 +27,7 @@ const createTables = async () => {
          password TEXT NOT NULL,
          isAdmin boolean DEFAULT FALSE
         );
-        
+
         CREATE UNIQUE INDEX IF NOT EXISTS unique_lower_username ON users (LOWER(username));
 
         CREATE TABLE items (
@@ -63,11 +63,14 @@ const syncAndSeed = async () => {
     console.log("Tables dropped");
     await createTables();
     console.log("Tables created");
-    await createUser("Brick", "Red");
-    await createUser("Grass", "Green");
-    await createUser("Sunny", "Yellow");
-    const markpass = await bcrypt.hash(`password`, 5)
-    const mark = await createUser("Mark", markpass, true);
+    const brickPass = await bcrypt.hash(`red`, 5)
+    const grassPass = await bcrypt.hash(`green`, 5)
+    const sunnyPass = await bcrypt.hash(`yellow`, 5)
+    const markPass = await bcrypt.hash(`password`, 5)
+    await createUser("Brick", brickPass);
+    await createUser("Grass", grassPass);
+    await createUser("Sunny", sunnyPass);
+    const mark = await createUser("Mark", markPass, true);
     console.log("Users created");
     const whiteRice = await createItem(
       "White rice",
