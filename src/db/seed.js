@@ -27,6 +27,8 @@ const createTables = async () => {
          password TEXT NOT NULL,
          isAdmin boolean DEFAULT FALSE
         );
+        
+        CREATE UNIQUE INDEX IF NOT EXISTS unique_lower_username ON users (LOWER(username));
 
         CREATE TABLE items (
         id SERIAL PRIMARY KEY,

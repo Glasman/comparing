@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
   try {
     console.log(req.body);
-    const user = await createUser(username.toLowerCase(), hashedPassword);
+    const user = await createUser(username, hashedPassword);
     const token = jwt.sign(
       { id: user.id, username: user.username },
       process.env.JWT_SECRET
@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    const token = await getUser(username.toLowerCase(), password);
+    const token = await getUser(username, password);
     console.log(token)
     res.status(200).send({ token });
   } catch (error) {

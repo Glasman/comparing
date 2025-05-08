@@ -52,7 +52,7 @@ const getUser = async (username, password) => {
       rows: [user],
     } = await client.query(
       `SELECT * FROM users
-        WHERE username=$1`,
+        WHERE LOWER(username) = LOWER($1)`,
       [username]
     );
 
