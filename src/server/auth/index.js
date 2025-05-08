@@ -2,7 +2,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import { createUser } from "../../db/users.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 // import pkg from "jsonwebtoken";
 // const { jwt } = pkg;
 
@@ -17,8 +17,11 @@ router.post("/register", async (req, res) => {
   try {
     console.log(req.body);
     const user = await createUser(username, hashedPassword);
-    const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
-    console.log(token)
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      process.env.JWT_SECRET
+    );
+    console.log(token);
     res.status(201).send(user);
   } catch (error) {
     console.log(error);
