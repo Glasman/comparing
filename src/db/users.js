@@ -55,7 +55,14 @@ const getUser = async (username, password) => {
         WHERE username=$1`,
       [username]
     );
+
+    if (!user) {
+      const error = new Error("User not found");
+      error.status = 404;
+      throw error;
+    }
     const comparedPassword = await bcrypt.compare(password, user.password);
+
     if (user && comparedPassword) {
       const assignedToken = jwt.sign(
         {
@@ -66,7 +73,7 @@ const getUser = async (username, password) => {
       );
       return assignedToken;
     } else {
-      const error = new Error("bad credentials");
+      const error = new Error("Bad credentials");
       error.status = 401;
       throw error;
     }

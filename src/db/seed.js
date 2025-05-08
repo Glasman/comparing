@@ -3,6 +3,7 @@ import { createUser } from "./users.js";
 import { createItem } from "./items.js";
 import { createTag } from "./tags.js";
 import { addTagToItem } from "./item_tag.js";
+import bcrypt from "bcryptjs";
 
 const dropTables = async () => {
   try {
@@ -63,7 +64,8 @@ const syncAndSeed = async () => {
     await createUser("Brick", "Red");
     await createUser("Grass", "Green");
     await createUser("Sunny", "Yellow");
-    const mark = await createUser("Mark", "password", true);
+    const markpass = await bcrypt.hash(`password`, 5)
+    const mark = await createUser("Mark", markpass, true);
     console.log("Users created");
     const whiteRice = await createItem(
       "White rice",
