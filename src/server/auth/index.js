@@ -1,6 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import { createUser } from "../../db/users.js";
+import { createUser, getUser } from "../../db/users.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 // import pkg from "jsonwebtoken";
@@ -21,13 +21,20 @@ router.post("/register", async (req, res) => {
       { id: user.id, username: user.username },
       process.env.JWT_SECRET
     );
-    console.log(token);
-    res.status(201).send(user);
+    res.status(201).send({ token });
   } catch (error) {
     console.log(error);
   }
 });
 
-router.post("/login", async (req, res) => {});
+router.post("/login", async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    const token = await getUser(username, password);
+    res.status(200).send({ token });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export default router;

@@ -1,4 +1,6 @@
 import { client } from "./client.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const createUser = async (name, password, isAdmin = false) => {
   try {
@@ -46,10 +48,28 @@ const getUserByID = async (id) => {
 //WIP
 const getUser = async (username, password) => {
   try {
-    const user = await client.query(`
-               SELECT * FROM users
-               WHERE username='${username}' AND password='${password}
-                `);
+    const {
+      rows: [user],
+    } = await client.query(
+      `SELECT * FROM users
+        WHERE username=$1`,
+      [username]
+    );
+    const comparedPassword = await bcrypt.compare(password, user.password);
+    if (user && comparedPassword) {
+      const assignedToken = jwt.sign(
+        {
+          id: user.id,
+          username: user.username,
+        },
+        process.env.JWT_SECRET
+      );
+      return assignedToken;
+    } else {
+      const error = new Error("bad credentials");
+      error.status = 401;
+      throw error;
+    }
     return user;
   } catch (error) {
     console.log(error);
