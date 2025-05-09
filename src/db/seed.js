@@ -20,6 +20,7 @@ const dropTables = async () => {
 
 const createTables = async () => {
   try {
+    //note; category is for object groups, i.e. Rice or Pickup Trucks
     await client.query(`
         CREATE TABLE users (
          id SERIAL PRIMARY KEY,

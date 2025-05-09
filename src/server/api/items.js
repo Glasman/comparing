@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getAllItems, getItemByID } from "../../db/items.js";
+import { getAllItems, getItemByID, createItem } from "../../db/items.js";
 
 // /api/items/
   router.get("/", async (req, res) => {
@@ -25,6 +25,19 @@ import { getAllItems, getItemByID } from "../../db/items.js";
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
+
+  router.post("/", async (req, res) => {
+    try {
+      const {name, image_url, description, category, user_id} = req.body;
+      const newItem = await createItem(name, image_url, description, category, user_id)
+      console.log(newItem)
+      console.log(req.body)
+      res.status(200).send(newItem);
+    } catch (error) {
+      console.error("Failed to post item:", error);
+      res.status(500).json({ error: "Internal Server Error, failed to post" });
+    }
+  })
   
 
 export default router;
