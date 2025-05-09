@@ -35,6 +35,7 @@ const createTables = async () => {
         name TEXT NOT NULL,
         image_url TEXT NOT NULL,
         description TEXT NOT NULL,
+        category TEXT NOT NULL,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
         );
 
@@ -76,12 +77,14 @@ const syncAndSeed = async () => {
       "White rice",
       "https://i.imgur.com/hoLtPSV.jpeg",
       "Plain ol white rice",
+      "Rice",
       mark.id
     );
     await createItem(
       "Brown rice",
       "https://i.imgur.com/3f5TX4s.png",
       "Nutrient rich brown rice",
+      "Rice",
       mark.id
     );
     console.log("Items created");

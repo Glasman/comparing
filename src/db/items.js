@@ -1,16 +1,16 @@
 import { client } from "./client.js";
 
-const createItem = async (name, image_url, description, item_id) => {
+const createItem = async (name, image_url, description, category, item_id) => {
   try {
     const {
       rows: [item],
     } = await client.query(
       `
-             INSERT INTO items (name, image_url, description, user_id) 
-             VALUES ($1, $2, $3, $4)
+             INSERT INTO items (name, image_url, description, category, user_id) 
+             VALUES ($1, $2, $3, $4, $5)
              RETURNING *
               `,
-      [name, image_url, description, item_id]
+      [name, image_url, description, category, item_id]
     );
     return item;
   } catch (error) {
