@@ -32,7 +32,7 @@ import { getAllItems, getItemByID, createItem } from "../../db/items.js";
       const newItem = await createItem(name, image_url, description, category, user_id)
       console.log(newItem)
       console.log(req.body)
-      res.status(200).send(newItem);
+      res.status(201).send(newItem);
     } catch (error) {
       console.error("Failed to post item:", error);
       res.status(500).json({ error: "Internal Server Error, failed to post" });
