@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { getAllItems, getItemByID, createItem } from "../../db/items.js";
+import verifyToken from "../util.js";
 
 // /api/items/
   router.get("/", async (req, res) => {
@@ -26,9 +27,10 @@ import { getAllItems, getItemByID, createItem } from "../../db/items.js";
     }
   });
 
-  router.post("/", async (req, res) => {
+  router.post("/", verifyToken, async (req, res) => {
     try {
-      const {name, image_url, description, category, user_id} = req.body;
+      const {name, image_url, description, category} = req.body;
+      const user_id = req.user.id;
       const newItem = await createItem(name, image_url, description, category, user_id)
       console.log(newItem)
       console.log(req.body)
