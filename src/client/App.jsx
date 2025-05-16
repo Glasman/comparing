@@ -1,60 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import AllItems from "./Components/AllItems";
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const createUser = async (event) => {
-    try {
-      const response = await axios.post("/createUser", {
-        username,
-        password
-      });
-      console.log("User being created");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getUser = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("/getUser", {
-        username,
-        password
-      });
-      console.log("User being checked");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  return (
-    <>
-      <h1>Comparing Things</h1>
-      <>
-        <form>
-          <input
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={createUser}>Create User</button>
-          <button onClick={getUser}>Login</button>
-        </form>
-      </>
-    </>
-  );
+  return <div className="App">
+    <Routes>
+      <Route path="/" element={<AllItems/>}/>
+    </Routes>
+  </div>;
 }
+
 
 export default App;
