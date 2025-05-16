@@ -19,7 +19,7 @@ function AllItems() {
     <div>
       <h2>All Items!</h2>
       {items.map((item) => (
-        <div key={item.id}>
+        <div key={item.id} style={{border: "2px solid black"}}>
           <h2>Name: {item.name}</h2>
           <img src={item.image_url}/>
           <h3>Description: {item.description}</h3>
