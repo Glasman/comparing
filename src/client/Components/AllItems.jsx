@@ -20,8 +20,9 @@ function AllItems() {
       <h2>All Items!</h2>
       {items.map((item) => (
         <div key={item.id}>
-          <h3>Name: {item.name}</h3>
-          <h2>Description: {item.description}</h2>
+          <h2>Name: {item.name}</h2>
+          <img src={item.image_url}/>
+          <h3>Description: {item.description}</h3>
         </div>
       ))}
     </div>
