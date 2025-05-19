@@ -9,8 +9,8 @@ function SingleItem() {
   useEffect(() => {
     async function getItem() {
       try {
-        const foundItem = await axios.get(`/api/items/${id}`);
-        setItem(foundItem.data);
+        const {data: foundItem} = await axios.get(`/api/items/${id}`);
+        setItem(foundItem);
       } catch (error) {
         console.error(error);
       }
