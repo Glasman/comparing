@@ -6,13 +6,14 @@ import AllItems from "./Components/AllItems";
 import SingleItem from "./Components/SingleItem";
 
 function App() {
-  return <div className="App">
-    <Routes>
-      <Route path="/" element={<AllItems/>}/>
-      <Route path="/:id" element={<SingleItem/>}/>
-    </Routes>
-  </div>;
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<AllItems />} />
+        <Route path="/:id" element={<SingleItem />} />
+      </Routes>
+    </div>
+  );
 }
-
 
 export default App;
