@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function AllItems() {
   const [items, setItems] = useState([]);
@@ -20,9 +21,11 @@ function AllItems() {
       <h2>All Items!</h2>
       {items.map((item) => (
         <div key={item.id} style={{ border: "2px solid black" }}>
-          <h2>Name: {item.name}</h2>
-          <img src={item.image_url} />
-          <h3>Description: {item.description}</h3>
+          <Link to={`/${item.id}`}>
+            <h2>Name: {item.name}</h2>
+            <img src={item.image_url} />
+            <h3>Description: {item.description}</h3>
+          </Link>
         </div>
       ))}
     </div>

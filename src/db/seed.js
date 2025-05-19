@@ -65,10 +65,10 @@ const syncAndSeed = async () => {
     console.log("Tables dropped");
     await createTables();
     console.log("Tables created");
-    const brickPass = await bcrypt.hash(`red`, 5)
-    const grassPass = await bcrypt.hash(`green`, 5)
-    const sunnyPass = await bcrypt.hash(`yellow`, 5)
-    const markPass = await bcrypt.hash(`password`, 5)
+    const brickPass = await bcrypt.hash(`red`, 5);
+    const grassPass = await bcrypt.hash(`green`, 5);
+    const sunnyPass = await bcrypt.hash(`yellow`, 5);
+    const markPass = await bcrypt.hash(`password`, 5);
     await createUser("Brick", brickPass);
     await createUser("Grass", grassPass);
     await createUser("Sunny", sunnyPass);
@@ -85,6 +85,13 @@ const syncAndSeed = async () => {
       "Brown rice",
       "https://i.imgur.com/3f5TX4s.png",
       "Nutrient rich brown rice",
+      "Rice",
+      mark.id
+    );
+    await createItem(
+      "Long grain rice",
+      "https://plus.unsplash.com/premium_photo-1723925093264-40b6b957c44d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZyUyMGdyYWluJTIwcmljZXxlbnwwfHwwfHx8MA%3D%3D",
+      "Rice with long grains",
       "Rice",
       mark.id
     );
