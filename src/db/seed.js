@@ -95,6 +95,20 @@ const syncAndSeed = async () => {
       "Rice",
       mark.id
     );
+    await createItem(
+      "Medium grain rice",
+      "https://cdn.apartmenttherapy.info/image/upload/v1617654647/k/Photo/Series/2021-03-rice-o-pedia/Medium-Grain-Rice/2021-03-30_ATK-48191-Rice-Medium-Grain.jpg",
+      "Rice with medium grains",
+      "Rice",
+      mark.id
+    );
+    await createItem(
+      "Short grain rice",
+      "https://www.zojirushi.com/blog/wp-content/uploads/2016/01/gohan.jpg",
+      "Rice with short grains",
+      "Rice",
+      mark.id
+    );
     console.log("Items created");
     const food = await createTag("Food");
     await createTag("Cars");
