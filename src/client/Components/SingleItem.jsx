@@ -16,7 +16,12 @@ function SingleItem() {
       }
     }
     getItem();
-  });
+  }, []);
+
+if (!item.id) {
+  return <div>Loading...</div>
+}
+
   return (
     <div>
       <div style={{ border: "2px solid black" }}>
