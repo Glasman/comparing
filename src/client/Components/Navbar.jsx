@@ -6,13 +6,9 @@ function Navbar() {
   const [search, setSearch] = useState("");
   return (
     <div>
-      <button
-        onClick={() => {
-          console.log("clicked all recipes");
-        }}
-      >
-        All Items
-      </button>
+      <Link to="/">
+        <button>All Items</button>
+      </Link>
       <input
         placeholder="Search..."
         value={search}
