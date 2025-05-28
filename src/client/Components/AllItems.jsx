@@ -4,7 +4,19 @@ import { Link } from "react-router-dom";
 
 function AllItems() {
   const [items, setItems] = useState([]);
-  console.log("items", items);
+  const [search, setSearch] = useState("");
+
+  const filtered = items.filter(item => item.name.includes(search))
+  const caseFiltered = items.filter(item => {
+    return item.name?.toLowerCase().includes(search.toLowerCase())
+  })
+  // const caseFiltered = items.filter(item => {
+  //   return item.name.toLowerCase().includes(search.toLowerCase())
+  // })
+  console.log("casefiltered:", caseFiltered)
+  console.log("filtered:", filtered)
+
+
   useEffect(() => {
     const getItems = async () => {
       try {
@@ -19,6 +31,11 @@ function AllItems() {
   return (
     <div>
       <h2>All Items!</h2>
+      <input
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       {items.map((item) => (
         <div key={item.id} style={{ border: "2px solid black" }}>
           <Link to={`/${item.id}`}>
