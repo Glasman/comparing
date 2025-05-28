@@ -6,12 +6,11 @@ function AllItems() {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
 
-  const filtered = items.filter(item => {
-    return item.name?.toLowerCase().includes(search.toLowerCase())
-  })
+  const filtered = items.filter((item) => {
+    return item.name?.toLowerCase().includes(search.toLowerCase());
+  });
 
-  console.log("filtered:", filtered)
-
+  console.log("filtered:", filtered);
 
   useEffect(() => {
     const getItems = async () => {
@@ -32,14 +31,23 @@ function AllItems() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {items.map((item) => (
-        <div key={item.id} style={{ border: "2px solid black" }}>
-          <Link to={`/${item.id}`}>
-            <h2>Name: {item.name}</h2>
-            <img src={item.image_url} />
-          </Link>
-        </div>
-      ))}
+      {search.length == 0
+        ? items.map((item) => (
+            <div key={item.id} style={{ border: "2px solid black", width: "500px"  }}>
+              <Link to={`/${item.id}`}>
+                <h2>Name: {item.name}</h2>
+                <img src={item.image_url} />
+              </Link>
+            </div>
+          ))
+        : filtered.map((item) => (
+            <div key={item.id} style={{ border: "2px solid black", width: "500px"  }}>
+              <Link to={`/${item.id}`}>
+                <h2>Name: {item.name}</h2>
+                <img src={item.image_url} />
+              </Link>
+            </div>
+          ))}
     </div>
   );
 }
