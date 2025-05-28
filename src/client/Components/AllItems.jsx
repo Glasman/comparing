@@ -6,14 +6,10 @@ function AllItems() {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
 
-  const filtered = items.filter(item => item.name.includes(search))
-  const caseFiltered = items.filter(item => {
+  const filtered = items.filter(item => {
     return item.name?.toLowerCase().includes(search.toLowerCase())
   })
-  // const caseFiltered = items.filter(item => {
-  //   return item.name.toLowerCase().includes(search.toLowerCase())
-  // })
-  console.log("casefiltered:", caseFiltered)
+
   console.log("filtered:", filtered)
 
 
