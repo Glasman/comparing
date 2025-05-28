@@ -7,7 +7,10 @@ function AllItems() {
   const [search, setSearch] = useState("");
 
   const filtered = items.filter((item) => {
-    return item.name?.toLowerCase().includes(search.toLowerCase());
+    return (
+      item.name?.toLowerCase().includes(search.toLowerCase()) ||
+      item.description?.toLowerCase().includes(search.toLocaleLowerCase())
+    );
   });
 
   console.log("filtered:", filtered);
@@ -33,7 +36,10 @@ function AllItems() {
       />
       {search.length == 0
         ? items.map((item) => (
-            <div key={item.id} style={{ border: "2px solid black", width: "500px"  }}>
+            <div
+              key={item.id}
+              style={{ border: "2px solid black", width: "500px" }}
+            >
               <Link to={`/${item.id}`}>
                 <h2>Name: {item.name}</h2>
                 <img src={item.image_url} />
@@ -41,7 +47,10 @@ function AllItems() {
             </div>
           ))
         : filtered.map((item) => (
-            <div key={item.id} style={{ border: "2px solid black", width: "500px"  }}>
+            <div
+              key={item.id}
+              style={{ border: "2px solid black", width: "500px" }}
+            >
               <Link to={`/${item.id}`}>
                 <h2>Name: {item.name}</h2>
                 <img src={item.image_url} />
