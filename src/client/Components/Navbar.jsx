@@ -7,14 +7,10 @@ function Navbar() {
       <Link to="/">
         <button>All Items</button>
       </Link>
-      
-      <button
-        onClick={() => {
-          console.log("clicked log in");
-        }}
-      >
-        Log in
-      </button>
+
+      <Link to="/login">
+        <button>Log in</button>
+      </Link>
     </div>
   );
 }

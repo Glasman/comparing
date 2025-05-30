@@ -5,6 +5,7 @@ import "./App.css";
 import AllItems from "./Components/AllItems";
 import SingleItem from "./Components/SingleItem";
 import Navbar from "./Components/Navbar";
+import Login from "./Components/Login";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AllItems />} />
         <Route path="/:id" element={<SingleItem />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
