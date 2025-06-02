@@ -13,8 +13,6 @@ function AllItems() {
     );
   });
 
-  console.log("filtered:", filtered);
-
   useEffect(() => {
     const getItems = async () => {
       try {

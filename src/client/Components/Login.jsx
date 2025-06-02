@@ -1,8 +1,41 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function Login() {
-  const { username, setUsername } = useState();
-  const { password, setPassword } = useState();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  //   const handleLogin = async () => {
+  //     try {
+  //       const { data: token } = await axios.post("/auth/login", {
+  //         username,
+  //         password,
+  //       });
+  //       console.log('token', token)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  const handleLogin = async () => {
+    const url = "/auth/login";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -17,7 +50,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button>Login</button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }

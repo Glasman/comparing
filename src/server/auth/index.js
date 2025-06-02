@@ -33,11 +33,11 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// /auth/login
 router.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const token = await getUser(username, password);
-    console.log(token);
     res.status(200).send({ token });
   } catch (error) {
     console.log(error);
