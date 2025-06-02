@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, {useState} from "react";
 
-function Login() {
+function Register() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
@@ -16,8 +15,8 @@ function Login() {
   //       console.log(error);
   //     }
   //   };
-  const handleLogin = async () => {
-    const url = "/auth/login";
+  const handleRegister = async () => {
+    const url = "/auth/register";
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -35,7 +34,6 @@ function Login() {
       console.error(error);
     }
   };
-
   return (
     <div>
       <div>
@@ -50,9 +48,9 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleRegister}>Register</button>
     </div>
   );
 }
 
-export default Login;
+export default Register;

@@ -11,6 +11,10 @@ function Navbar() {
       <Link to="/login">
         <button>Log in</button>
       </Link>
+
+      <Link to="/register">
+        <button>Register</button>
+      </Link>
     </div>
   );
 }
