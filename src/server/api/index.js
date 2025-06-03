@@ -12,5 +12,4 @@ router.get("/test", (req, res) => {
 router.use("/users", usersRouter);
 router.use("/items", itemsRouter);
 
-
 export default router;

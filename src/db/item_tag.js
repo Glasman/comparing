@@ -11,7 +11,7 @@ const addTagToItem = async (itemId, tagId) => {
         ON CONFLICT DO NOTHING
         RETURNING *;
         `,
-        [itemId, tagId]
+      [itemId, tagId]
     );
   } catch (error) {
     console.log(error);

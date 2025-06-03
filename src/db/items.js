@@ -1,6 +1,13 @@
 import { client } from "./client.js";
 
-const createItem = async (name, image_url, description, category, item_id, admin_approved = false) => {
+const createItem = async (
+  name,
+  image_url,
+  description,
+  category,
+  item_id,
+  admin_approved = false
+) => {
   try {
     const {
       rows: [item],
@@ -23,7 +30,7 @@ const getAllItems = async () => {
     const { rows } = await client.query(`
              SELECT * FROM items
               `);
-              console.log(rows)
+    console.log(rows);
     return rows;
   } catch (error) {
     console.log(error);

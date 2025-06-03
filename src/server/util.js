@@ -21,7 +21,7 @@ const verifyToken = async (req, res, next) => {
     console.log("req", req);
     next();
   } catch (error) {
-    console.error(error.stack)
+    console.error(error.stack);
     res.status(401).send({ message: "error:", error });
   }
 };
