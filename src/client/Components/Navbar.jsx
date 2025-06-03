@@ -19,6 +19,10 @@ function Navbar() {
         <button>Register</button>
       </Link>
 
+      <Link to="/approved">
+        <button>Approved Items</button>
+      </Link>
+
       <button onClick={handleLogout}>Log Out</button>
     </div>
   );

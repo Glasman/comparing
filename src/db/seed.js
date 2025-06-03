@@ -37,7 +37,8 @@ const createTables = async () => {
         image_url TEXT NOT NULL,
         description TEXT NOT NULL,
         category TEXT NOT NULL,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+        admin_approved BOOLEAN DEFAULT FALSE
         );
 
         CREATE TABLE tags (
@@ -79,35 +80,40 @@ const syncAndSeed = async () => {
       "https://i.imgur.com/hoLtPSV.jpeg",
       "Plain ol white rice",
       "Rice",
-      mark.id
+      mark.id,
+      false
     );
     await createItem(
       "Brown rice",
       "https://i.imgur.com/3f5TX4s.png",
       "Nutrient rich brown rice",
       "Rice",
-      mark.id
+      mark.id,
+      true
     );
     await createItem(
       "Long grain rice",
       "https://plus.unsplash.com/premium_photo-1723925093264-40b6b957c44d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9uZyUyMGdyYWluJTIwcmljZXxlbnwwfHwwfHx8MA%3D%3D",
       "Rice with long grains",
       "Rice",
-      mark.id
+      mark.id,
+      true
     );
     await createItem(
       "Medium grain rice",
       "https://cdn.apartmenttherapy.info/image/upload/v1617654647/k/Photo/Series/2021-03-rice-o-pedia/Medium-Grain-Rice/2021-03-30_ATK-48191-Rice-Medium-Grain.jpg",
       "Rice with medium grains",
       "Rice",
-      mark.id
+      mark.id,
+      true
     );
     await createItem(
       "Short grain rice",
       "https://www.zojirushi.com/blog/wp-content/uploads/2016/01/gohan.jpg",
       "Rice with short grains",
       "Rice",
-      mark.id
+      mark.id,
+      true
     );
     console.log("Items created");
     const food = await createTag("Food");

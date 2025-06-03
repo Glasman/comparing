@@ -7,6 +7,7 @@ import SingleItem from "./Components/SingleItem";
 import Navbar from "./Components/Navbar";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import AllApprovedItems from "./Components/AllApprovedItems";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<AllItems />} />
+        <Route path="/approved" element={<AllApprovedItems />} />
         <Route path="/:id" element={<SingleItem />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

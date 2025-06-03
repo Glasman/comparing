@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getAllItems, getItemByID, createItem } from "../../db/items.js";
+import { getAllItems, getItemByID, createItem, getApprovedItems } from "../../db/items.js";
 import verifyToken from "../util.js";
 
 // /api/items/
@@ -8,7 +8,18 @@ import verifyToken from "../util.js";
     try {
       console.log("GET /api/items route hit");
       const items = await getAllItems();
-      console.log(items);
+      res.status(200).send(items);
+    } catch (error) {
+      console.error("Failed to get items:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  // /api/items/approved/
+  router.get("/approved", async (req, res) => {
+    try {
+      console.log("GET /api/items/approved route hit");
+      const items = await getApprovedItems();
       res.status(200).send(items);
     } catch (error) {
       console.error("Failed to get items:", error);
@@ -31,7 +42,9 @@ import verifyToken from "../util.js";
     try {
       const {name, image_url, description, category} = req.body;
       const user_id = req.user.id;
-      const newItem = await createItem(name, image_url, description, category, user_id)
+      // const newItem = await createItem(name, image_url, description, category, user_id)
+      //default admin_approved value is false so that all submitted items will be false until admin approves them
+      const newItem = await createItem(name, image_url, description, category, user_id, false)
       console.log(newItem)
       console.log(req.body)
       res.status(201).send(newItem);
