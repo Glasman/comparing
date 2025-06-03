@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  function handleLogout() {
+    window.localStorage.removeItem("TOKEN");
+  }
   return (
     <div>
       <Link to="/">
@@ -15,6 +18,8 @@ function Navbar() {
       <Link to="/register">
         <button>Register</button>
       </Link>
+
+      <button onClick={handleLogout}>Log Out</button>
     </div>
   );
 }
