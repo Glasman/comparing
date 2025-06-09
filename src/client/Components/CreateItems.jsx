@@ -10,14 +10,21 @@ function CreateItems() {
       <h2>Add your own items to compare!</h2>
       <div className="box">
         <label>Item name</label>
-        <input value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          value={name}
+          className="form-field"
+          onChange={(e) => setName(e.target.value)}
+        />
         <label>Image link</label>
         <input
           value={imageLink}
+          className="form-field"
           onChange={(e) => setImageLink(e.target.value)}
         />
         <label>Description</label>
-        <input
+        <textarea
+          className="form-field"
+          placeholder="You may resize this box for legibility."
           value={description}
           onChange={(e) => {
             setDescription(e.target.value);
@@ -26,6 +33,7 @@ function CreateItems() {
         <label>Category</label>
         <input
           value={category}
+          className="form-field"
           onChange={(e) => {
             setCategory(e.target.value);
           }}
