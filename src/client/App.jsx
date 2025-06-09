@@ -8,7 +8,7 @@ import Navbar from "./Components/Navbar";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import AllApprovedItems from "./Components/AllApprovedItems";
-
+import CreateItems from "./Components/CreateItems";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route path="/:id" element={<SingleItem />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/createItems" element={<CreateItems />} />
       </Routes>
     </div>
   );

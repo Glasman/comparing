@@ -23,6 +23,9 @@ function Navbar() {
         <button>Approved Items</button>
       </Link>
 
+      <Link to="/createItems">
+      <button>Add Items</button></Link>
+
       <button onClick={handleLogout}>Log Out</button>
     </div>
   );
