@@ -27,7 +27,7 @@ function CreateItems() {
         <input
           value={category}
           onChange={(e) => {
-            setCategory(e.category.value);
+            setCategory(e.target.value);
           }}
         />
       </div>
