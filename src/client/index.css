@@ -17,3 +17,8 @@ img {
 .form-field {
   margin-bottom: 3px;
 }
+
+textarea {
+  height: 150px;
+  width: 300px
+}
