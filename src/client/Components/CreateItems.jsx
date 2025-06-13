@@ -72,7 +72,7 @@ import axios from "axios";
 
 function CreateItems() {
   const [category, setCategory] = useState("");
-  const [entries, setEntries] = useState([{ name: "", description: "" }]);
+  const [entries, setEntries] = useState([{ name: "", imageURL: "", description: "" }]);
 
   const handleEntryChange = (index, field, value) => {
     const newEntries = [...entries];
@@ -80,9 +80,13 @@ function CreateItems() {
     setEntries(newEntries);
   };
 
+  const addEntry = () => {
+    setEntries([...entries, {name: "", imageURL: "", description: ""}])
+  }
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(entries);
+    // e.preventDefault();
+    // console.log(entries);
   };
 
   return (
@@ -128,6 +132,7 @@ function CreateItems() {
             />
           </div>
         ))}
+        <button type="button" onClick={addEntry}>Add another entry</button>
         <button type="submit">Submit</button>
       </form>
     </>
