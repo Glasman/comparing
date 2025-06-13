@@ -3,7 +3,9 @@ import axios from "axios";
 
 function CreateItems() {
   const [category, setCategory] = useState("");
-  const [entries, setEntries] = useState([{ name: "", imageURL: "", description: "" }]);
+  const [entries, setEntries] = useState([
+    { name: "", imageURL: "", description: "" },
+  ]);
 
   const handleEntryChange = (index, field, value) => {
     const newEntries = [...entries];
@@ -12,12 +14,18 @@ function CreateItems() {
   };
 
   const addEntry = () => {
-    setEntries([...entries, {name: "", imageURL: "", description: ""}])
-  }
+    setEntries([...entries, { name: "", imageURL: "", description: "" }]);
+  };
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
     // console.log(entries);
+  };
+
+  const handleRemoveEntry = (index) => {
+    const list = [...entries];
+    list.splice(index, 1);
+    setEntries(list);
   };
 
   return (
@@ -47,7 +55,7 @@ function CreateItems() {
             <input
               placeholder="Image URL"
               required
-              value={entry.imageUrl}
+              value={entry.imageURL}
               onChange={(e) => {
                 handleEntryChange(index, "imageURL", e.target.value);
               }}
@@ -61,9 +69,16 @@ function CreateItems() {
                 handleEntryChange(index, "description", e.target.value);
               }}
             />
+            {entries.length > 1 && (
+              <button type="button" className="remove-btn" onClick={() => handleRemoveEntry(index)}>
+                Remove This Item
+              </button>
+            )}
           </div>
         ))}
-        <button type="button" onClick={addEntry}>Add another entry</button>
+        <button type="button" onClick={addEntry}>
+          Add another entry
+        </button>
         <button type="submit">Submit</button>
       </form>
     </>
