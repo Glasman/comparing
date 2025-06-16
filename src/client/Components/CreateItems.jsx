@@ -17,7 +17,6 @@ function CreateItems() {
     setEntries([...entries, { name: "", imageURL: "", description: "" }]);
   };
 
-  //will need to pull userID from token as it is necessary for item creation
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = entries.map((entry) => ({

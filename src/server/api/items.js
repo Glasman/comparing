@@ -5,7 +5,7 @@ import {
   getItemByID,
   createItem,
   getApprovedItems,
-  createManyItems
+  createManyItems,
 } from "../../db/items.js";
 import verifyToken from "../util.js";
 
@@ -23,7 +23,6 @@ router.get("/", async (req, res) => {
 // /api/items/approved/
 router.get("/approved", async (req, res) => {
   try {
-
     const items = await getApprovedItems();
     res.status(200).send(items);
   } catch (error) {
@@ -68,15 +67,14 @@ router.post("/", verifyToken, async (req, res) => {
 router.post("/many", verifyToken, async (req, res) => {
   const items = req.body;
   const user_id = req.user.id;
-  
-  try {
 
-    const insertedItems = await createManyItems(items, user_id)
-    res.status(201).send(insertedItems)
+  try {
+    const insertedItems = await createManyItems(items, user_id);
+    res.status(201).send(insertedItems);
   } catch (error) {
-    console.error(error)
-    res.status(500).send("Internal service error")
+    console.error(error);
+    res.status(500).send("Internal service error");
   }
-})
+});
 
 export default router;

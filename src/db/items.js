@@ -92,9 +92,8 @@ const createManyItems = async (items, user_id) => {
     RETURNING *
     `;
 
-
-    const {rows} = await client.query(query, params)
-    return rows
+    const { rows } = await client.query(query, params);
+    return rows;
   } catch (error) {
     console.error(error);
   }
