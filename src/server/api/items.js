@@ -5,6 +5,7 @@ import {
   getItemByID,
   createItem,
   getApprovedItems,
+  createManyItems
 } from "../../db/items.js";
 import verifyToken from "../util.js";
 
@@ -43,11 +44,11 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// /api/items
 router.post("/", verifyToken, async (req, res) => {
   try {
     const { name, image_url, description, category } = req.body;
     const user_id = req.user.id;
-    // const newItem = await createItem(name, image_url, description, category, user_id)
     //default admin_approved value is false so that all submitted items will be false until admin approves them
     const newItem = await createItem(
       name,
@@ -65,5 +66,21 @@ router.post("/", verifyToken, async (req, res) => {
     res.status(500).json({ error: "Internal Server Error, failed to post" });
   }
 });
+
+// /api/items/many
+router.post("/many", verifyToken, async (req, res) => {
+  const items = req.body;
+  const user_id = req.user.id;
+  console.log("user id in api", user_id)
+  try {
+    console.log("The MANY API has been hit")
+    console.log("api items right before await createManyItems(items, user_id)", items)
+    const insertedItems = await createManyItems(items, user_id)
+    res.status(201).send(insertedItems)
+  } catch (error) {
+    console.error("Bulk insert failed", error)
+    res.status(500).send("Internal service error")
+  }
+})
 
 export default router;

@@ -11,15 +11,35 @@ function CreateItems() {
     const newEntries = [...entries];
     newEntries[index][field] = value;
     setEntries(newEntries);
+    console.log(entries);
   };
 
   const addEntry = () => {
     setEntries([...entries, { name: "", imageURL: "", description: "" }]);
   };
 
+  //will need to pull userID from token as it is necessary for item creation
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // console.log(entries);
+    e.preventDefault();
+    const payload = entries.map((entry) => ({
+      ...entry,
+      category,
+    }));
+    try {
+      console.log("payload before axios attempt", payload)
+      await axios.post("/api/items/many", payload, {
+        headers: {
+          Authorization: `Bearer ` + window.localStorage.getItem("TOKEN"),
+        },
+      });
+      console.log("payload after axios attempt", payload)
+      alert(
+        "Items submitted! Now all you have to do is wait for admnin approval."
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(payload);
   };
 
   const handleRemoveEntry = (index) => {
@@ -70,7 +90,11 @@ function CreateItems() {
               }}
             />
             {entries.length > 1 && (
-              <button type="button" className="remove-btn" onClick={() => handleRemoveEntry(index)}>
+              <button
+                type="button"
+                className="remove-btn"
+                onClick={() => handleRemoveEntry(index)}
+              >
                 Remove This Item
               </button>
             )}

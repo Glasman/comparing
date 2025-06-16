@@ -1,30 +1,5 @@
 import { client } from "./client.js";
 
-const createItem = async (
-  name,
-  image_url,
-  description,
-  category,
-  item_id,
-  admin_approved = false
-) => {
-  try {
-    const {
-      rows: [item],
-    } = await client.query(
-      `
-             INSERT INTO items (name, image_url, description, category, user_id, admin_approved) 
-             VALUES ($1, $2, $3, $4, $5, $6)
-             RETURNING *
-              `,
-      [name, image_url, description, category, item_id, admin_approved]
-    );
-    return item;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const getAllItems = async () => {
   try {
     const { rows } = await client.query(`
@@ -63,4 +38,76 @@ const getItemByID = async (id) => {
   }
 };
 
-export { createItem, getAllItems, getApprovedItems, getItemByID };
+const createItem = async (
+  name,
+  image_url,
+  description,
+  category,
+  item_id,
+  admin_approved = false
+) => {
+  try {
+    const {
+      rows: [item],
+    } = await client.query(
+      `
+             INSERT INTO items (name, image_url, description, category, user_id, admin_approved) 
+             VALUES ($1, $2, $3, $4, $5, $6)
+             RETURNING *
+              `,
+      [name, image_url, description, category, item_id, admin_approved]
+    );
+    return item;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const createManyItems = async (items, user_id) => {
+  try {
+    if (!items.length) return [];
+
+    const values = [];
+    const params = [];
+
+    items.forEach((item, index) => {
+      const offset = index * 6;
+      values.push(
+        `($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${
+          offset + 5
+        }, $${offset + 6})`
+      );
+      params.push(
+        item.name,
+        item.imageURL,
+        item.description,
+        item.category,
+        user_id,
+        false
+      );
+    });
+
+    const query = `
+    INSERT INTO items (name, image_url, description, category, user_id, admin_approved)
+    VALUES ${values.join(", ")}
+    RETURNING *
+    `;
+
+    console.log("db createmanyitems query:", query)
+    console.log("params", params)
+    console.log("values", values)
+
+    const {rows} = await client.query(query, params)
+    return rows
+  } catch (error) {
+    console.log("create many items error:", error);
+  }
+};
+
+export {
+  createItem,
+  createManyItems,
+  getAllItems,
+  getApprovedItems,
+  getItemByID,
+};
