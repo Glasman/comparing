@@ -14,7 +14,7 @@ const addTagToItem = async (itemId, tagId) => {
       [itemId, tagId]
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

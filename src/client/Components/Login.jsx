@@ -5,17 +5,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  //   const handleLogin = async () => {
-  //     try {
-  //       const { data: token } = await axios.post("/auth/login", {
-  //         username,
-  //         password,
-  //       });
-  //       console.log('token', token)
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+
   const handleLogin = async () => {
     const url = "/auth/login";
     try {

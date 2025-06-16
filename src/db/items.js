@@ -5,10 +5,9 @@ const getAllItems = async () => {
     const { rows } = await client.query(`
              SELECT * FROM items
               `);
-    console.log(rows);
     return rows;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 const getApprovedItems = async () => {
@@ -20,7 +19,7 @@ const getApprovedItems = async () => {
 
     return rows;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -34,7 +33,7 @@ const getItemByID = async (id) => {
                 `);
     return item;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -59,7 +58,7 @@ const createItem = async (
     );
     return item;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -93,14 +92,11 @@ const createManyItems = async (items, user_id) => {
     RETURNING *
     `;
 
-    console.log("db createmanyitems query:", query)
-    console.log("params", params)
-    console.log("values", values)
 
     const {rows} = await client.query(query, params)
     return rows
   } catch (error) {
-    console.log("create many items error:", error);
+    console.error(error);
   }
 };
 

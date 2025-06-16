@@ -11,7 +11,6 @@ function CreateItems() {
     const newEntries = [...entries];
     newEntries[index][field] = value;
     setEntries(newEntries);
-    console.log(entries);
   };
 
   const addEntry = () => {
@@ -26,20 +25,17 @@ function CreateItems() {
       category,
     }));
     try {
-      console.log("payload before axios attempt", payload)
       await axios.post("/api/items/many", payload, {
         headers: {
           Authorization: `Bearer ` + window.localStorage.getItem("TOKEN"),
         },
       });
-      console.log("payload after axios attempt", payload)
       alert(
         "Items submitted! Now all you have to do is wait for admnin approval."
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-    console.log(payload);
   };
 
   const handleRemoveEntry = (index) => {
