@@ -117,5 +117,5 @@ export {
   getAllItems,
   getApprovedItems,
   getItemByID,
-  getUnapprovedItems
+  getUnapprovedItems,
 };

@@ -80,7 +80,7 @@ const getUser = async (username, password) => {
         {
           id: user.id,
           username: user.username,
-          isAdmin: user.isAdmin
+          isAdmin: user.isAdmin,
         },
         process.env.JWT_SECRET
       );
