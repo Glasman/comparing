@@ -39,7 +39,7 @@ router.post("/login", async (req, res, next) => {
     const token = await getUser(username, password);
     res.status(200).send({ token });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 

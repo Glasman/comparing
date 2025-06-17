@@ -92,7 +92,7 @@ const getUser = async (username, password) => {
     }
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

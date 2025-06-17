@@ -5,7 +5,6 @@ import { getAllUsers, getUserByID } from "../../db/users.js";
 // /api/users/
 router.get("/", async (req, res) => {
   try {
-    console.log("GET /api/users route hit");
     const users = await getAllUsers();
     res.status(200).send(users);
   } catch (error) {

@@ -52,8 +52,8 @@ const createTables = async () => {
         PRIMARY KEY (item_id, tag_id)
         )
         `);
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -121,7 +121,7 @@ const syncAndSeed = async () => {
     await addTagToItem(whiteRice.id, food.id);
     client.end();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

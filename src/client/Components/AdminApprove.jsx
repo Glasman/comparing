@@ -59,6 +59,4 @@ function AdminApprove() {
   );
 }
 
-
-
-export default AdminApprove
+export default AdminApprove;

@@ -14,7 +14,7 @@ const createTag = async (name) => {
     );
     return tag;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

@@ -28,7 +28,8 @@ function Navbar() {
       </Link>
 
       <Link to="/createItems">
-      <button>Add Items</button></Link>
+        <button>Add Items</button>
+      </Link>
 
       <button onClick={handleLogout}>Log Out</button>
     </div>
