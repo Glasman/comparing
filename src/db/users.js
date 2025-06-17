@@ -75,12 +75,12 @@ const getUser = async (username, password) => {
       throw error;
     }
     const comparedPassword = await bcrypt.compare(password, user.password);
-
     if (user && comparedPassword) {
       const assignedToken = jwt.sign(
         {
           id: user.id,
           username: user.username,
+          isAdmin: user.isAdmin
         },
         process.env.JWT_SECRET
       );
