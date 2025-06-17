@@ -22,6 +22,18 @@ const getApprovedItems = async () => {
     console.error(error);
   }
 };
+const getUnapprovedItems = async () => {
+  try {
+    const { rows } = await client.query(`
+             SELECT * FROM items
+             WHERE admin_approved = FALSE;
+              `);
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const getItemByID = async (id) => {
   try {
@@ -105,4 +117,5 @@ export {
   getAllItems,
   getApprovedItems,
   getItemByID,
+  getUnapprovedItems
 };

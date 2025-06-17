@@ -9,6 +9,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import AllApprovedItems from "./Components/AllApprovedItems";
 import CreateItems from "./Components/CreateItems";
+import AdminApprove from "./Components/AdminApprove";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AllItems />} />
         <Route path="/approved" element={<AllApprovedItems />} />
+        <Route path="/unapproved" element={<AdminApprove />} />
         <Route path="/:id" element={<SingleItem />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

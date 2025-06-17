@@ -23,6 +23,10 @@ function Navbar() {
         <button>Approved Items</button>
       </Link>
 
+      <Link to="/unapproved">
+        <button>Unapproved Items (Admins only!)</button>
+      </Link>
+
       <Link to="/createItems">
       <button>Add Items</button></Link>
 

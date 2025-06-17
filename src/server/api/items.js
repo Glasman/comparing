@@ -5,6 +5,7 @@ import {
   getItemByID,
   createItem,
   getApprovedItems,
+  getUnapprovedItems,
   createManyItems,
 } from "../../db/items.js";
 import verifyToken from "../util.js";
@@ -24,6 +25,17 @@ router.get("/", async (req, res) => {
 router.get("/approved", async (req, res) => {
   try {
     const items = await getApprovedItems();
+    res.status(200).send(items);
+  } catch (error) {
+    console.error("Failed to get items:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// /api/items/unapproved/
+router.get("/unapproved", async (req, res) => {
+  try {
+    const items = await getUnapprovedItems()
     res.status(200).send(items);
   } catch (error) {
     console.error("Failed to get items:", error);
