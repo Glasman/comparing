@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -12,6 +12,22 @@ import CreateItems from "./Components/CreateItems";
 import AdminApprove from "./Components/AdminApprove";
 
 function App() {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    async function getMe() {
+      const { data } = await axios.get("/api/users/me", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+        },
+      });
+      console.log("data", data)
+      setUser(data.user)
+      console.log(user)
+    }
+    getMe();
+  });
+
   return (
     <div className="App">
       <Navbar />

@@ -21,7 +21,7 @@ const verifyToken = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error.stack);
-    res.status(401).send({ message: "error:", error });
+    res.status(401).send({ message: "Invalid Token:", user: "NotLoggedIn", error });
   }
 };
 export default verifyToken;
