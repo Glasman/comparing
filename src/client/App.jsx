@@ -15,31 +15,51 @@ function App() {
   const [user, setUser] = useState("");
 
   useEffect(() => {
+    const token = localStorage.getItem("TOKEN");
+    if (!token) {
+      // return;
+      console.log("no token");
+    }
     async function getMe() {
-      const { data } = await axios.get("/api/users/me", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("TOKEN"),
-        },
-      });
-      console.log("data", data)
-      setUser(data.user)
-      console.log(user)
+      try {
+        const { data } = await axios.get("/api/users/me", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
+        console.log("data", data);
+        setUser(data.user);
+
+      } catch (error) {
+        console.error(error);
+      }
     }
     getMe();
-  });
+    // }, [user]);
+  }, [user]);
 
   return (
     <div className="App">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<AllItems />} />
-        <Route path="/approved" element={<AllApprovedItems />} />
-        <Route path="/unapproved" element={<AdminApprove />} />
-        <Route path="/:id" element={<SingleItem />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/createItems" element={<CreateItems />} />
-      </Routes>
+{/* will need to replace with extended if/else for admin view */}
+      {user === "loggedIn" ? (
+        <Routes>
+          <Route path="/" element={<AllItems />} />
+          <Route path="/approved" element={<AllApprovedItems />} />
+          <Route path="/unapproved" element={<AdminApprove />} />
+          <Route path="/:id" element={<SingleItem />} />
+          <Route path="/createItems" element={<CreateItems />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<AllItems />} />
+          <Route path="/approved" element={<AllApprovedItems />} />
+          <Route path="/unapproved" element={<AdminApprove />} />
+          <Route path="/:id" element={<SingleItem />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      )}
     </div>
   );
 }

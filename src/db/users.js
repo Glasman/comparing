@@ -2,17 +2,17 @@ import { client } from "./client.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const createUser = async (name, password, isAdmin = false) => {
+const createUser = async (name, password, is_admin = false) => {
   try {
     const {
       rows: [user],
     } = await client.query(
       `
-           INSERT INTO users (username, password, isAdmin) 
+           INSERT INTO users (username, password, is_admin) 
            VALUES ($1, $2, $3)
            RETURNING *;
             `,
-      [name, password, isAdmin]
+      [name, password, is_admin]
     );
     return user;
   } catch (error) {
@@ -80,7 +80,7 @@ const getUser = async (username, password) => {
         {
           id: user.id,
           username: user.username,
-          isAdmin: user.isAdmin,
+          is_admin: user.is_admin,
         },
         process.env.JWT_SECRET
       );

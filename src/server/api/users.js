@@ -33,10 +33,9 @@ router.get("/me", async (req, res) => {
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     res.send({ user: "loggedIn" });
-    
   } catch (error) {
     console.error(error.stack);
-    res.status(401).send({ message: "error:", error });
+    res.send({ user: "notLoggedIn", message: "error:", error });
   }
 });
 
