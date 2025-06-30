@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate()
 
   const handleLogin = async () => {
     const url = "/auth/login";
@@ -21,6 +22,8 @@ function Login() {
       }
       const token = await response.json();
       window.localStorage.setItem("TOKEN", token.token);
+      navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

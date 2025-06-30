@@ -29,7 +29,6 @@ function App() {
         });
         console.log("data", data);
         setUser(data.user);
-
       } catch (error) {
         console.error(error);
       }
@@ -40,8 +39,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-{/* will need to replace with extended if/else for admin view */}
+      <Navbar user={user} />
+      {/* will need to replace with extended if/else for admin view */}
       {user === "loggedIn" ? (
         <Routes>
           <Route path="/" element={<AllItems />} />
