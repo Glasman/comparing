@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar({ user }) {
+function Navbar({ user, setToken }) {
   function handleLogout() {
     window.localStorage.removeItem("TOKEN");
-    window.location.reload();
+    setToken("");
   }
   if (user === "loggedIn") {
     return (
@@ -37,8 +37,7 @@ function Navbar({ user }) {
 
 export default Navbar;
 
-
-  /*} <Link to="/">
+/*} <Link to="/">
         <button>All Items</button>
       </Link>
       <Link to="/login">
@@ -56,4 +55,3 @@ export default Navbar;
       <Link to="/createItems">
         <button>Add Items</button>
       </Link> */
-

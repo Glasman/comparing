@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-function Register() {
+function Register({ setToken }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-    const navigate = useNavigate()
-  
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     const url = "/auth/register";
@@ -24,7 +22,7 @@ function Register() {
       const token = await response.json();
       window.localStorage.setItem("TOKEN", token.token);
       navigate("/");
-      window.location.reload();
+      setToken(token.token);
     } catch (error) {
       console.error(error);
     }

@@ -13,6 +13,7 @@ import AdminApprove from "./Components/AdminApprove";
 
 function App() {
   const [user, setUser] = useState("");
+  const [token, setToken] = useState(window.localStorage.getItem("TOKEN"));
 
   useEffect(() => {
     const token = localStorage.getItem("TOKEN");
@@ -34,13 +35,13 @@ function App() {
       }
     }
     getMe();
-    // }, [user]);
-  }, [user]);
+  }, [token]);
 
   return (
     <div className="App">
-      <Navbar user={user} />
+      <Navbar user={user} setToken={setToken} />
       {/* will need to replace with extended if/else for admin view */}
+      {/* Ensure that users have navbar buttons that match up to their respective routes */}
       {user === "loggedIn" ? (
         <Routes>
           <Route path="/" element={<AllItems />} />
@@ -55,8 +56,8 @@ function App() {
           <Route path="/approved" element={<AllApprovedItems />} />
           <Route path="/unapproved" element={<AdminApprove />} />
           <Route path="/:id" element={<SingleItem />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/register" element={<Register setToken={setToken} />} />
         </Routes>
       )}
     </div>
