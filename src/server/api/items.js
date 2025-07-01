@@ -7,6 +7,7 @@ import {
   getApprovedItems,
   getUnapprovedItems,
   createManyItems,
+  getItemByCategory
 } from "../../db/items.js";
 import verifyToken from "../util.js";
 
@@ -43,16 +44,7 @@ router.get("/unapproved", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const item = await getItemByID(id);
-    res.status(200).send(item);
-  } catch (error) {
-    console.error("Failed to get item:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+
 
 // /api/items
 router.post("/", verifyToken, async (req, res) => {
@@ -88,5 +80,28 @@ router.post("/many", verifyToken, async (req, res) => {
     res.status(500).send("Internal service error");
   }
 });
+
+// /api/items/:id
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const item = await getItemByID(id);
+    res.status(200).send(item);
+  } catch (error) {
+    console.error("Failed to get item:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// /api/items/category/:category
+router.get("/category/:category", async (req, res) => {
+  try {
+    const {category} = req.params;
+    const items = await getItemByCategory(category)
+    res.status(200).send(items)
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 export default router;

@@ -10,9 +10,11 @@ import Register from "./Components/Register";
 import AllApprovedItems from "./Components/AllApprovedItems";
 import CreateItems from "./Components/CreateItems";
 import AdminApprove from "./Components/AdminApprove";
+import AllItemsInCategory from "./Components/AllItemsInCategory";
 
 function App() {
   const [user, setUser] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [token, setToken] = useState(window.localStorage.getItem("TOKEN"));
 
   useEffect(() => {
@@ -47,17 +49,19 @@ function App() {
           <Route path="/" element={<AllItems />} />
           <Route path="/approved" element={<AllApprovedItems />} />
           <Route path="/unapproved" element={<AdminApprove />} />
-          <Route path="/:id" element={<SingleItem />} />
           <Route path="/createItems" element={<CreateItems />} />
+          <Route path="/category/:category" element={<AllItemsInCategory />} />
+          <Route path="/:id" element={<SingleItem />} />
         </Routes>
       ) : (
         <Routes>
           <Route path="/" element={<AllItems />} />
           <Route path="/approved" element={<AllApprovedItems />} />
           <Route path="/unapproved" element={<AdminApprove />} />
-          <Route path="/:id" element={<SingleItem />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/register" element={<Register setToken={setToken} />} />
+          <Route path="/category/:category" element={<AllItemsInCategory />} />
+          <Route path="/:id" element={<SingleItem />} />
         </Routes>
       )}
     </div>

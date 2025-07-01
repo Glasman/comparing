@@ -111,6 +111,21 @@ const createManyItems = async (items, user_id) => {
   }
 };
 
+const getItemByCategory = async (category) => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT * FROM ITEMS
+      WHERE LOWER(category) = LOWER($1)
+      `,
+      [category]
+    );
+    return rows;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   createItem,
   createManyItems,
@@ -118,4 +133,5 @@ export {
   getApprovedItems,
   getItemByID,
   getUnapprovedItems,
+  getItemByCategory,
 };
