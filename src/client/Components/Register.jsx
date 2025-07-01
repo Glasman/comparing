@@ -21,8 +21,8 @@ function Register({ setToken }) {
       }
       const token = await response.json();
       window.localStorage.setItem("TOKEN", token.token);
-      navigate("/");
       setToken(token.token);
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
