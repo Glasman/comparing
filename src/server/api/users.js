@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { getAllUsers, getUserByID } from "../../db/users.js";
+import verifyToken from "../util.js";
 
 const router = express.Router();
 
@@ -15,27 +16,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// /api/users/me
-router.get("/me", async (req, res) => {
-  const bearer = req.headers.authorization;
-  if (!bearer) {
-    res.send({ user: "notLoggedIn" });
-    return;
-  }
 
-  const [, token] = bearer.split(" ");
-
-  if (!token) {
-    res.send({ user: "notLoggedIn" });
-    return;
-  }
-
+router.get("/me", verifyToken, async (req, res) => {
   try {
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    res.send({ user: "loggedIn" });
+    const user = await getUserByID(req.user.id);
+    res.send({ user });
   } catch (error) {
     console.error(error.stack);
-    res.send({ user: "notLoggedIn", message: "error:", error });
+    res.status(401).send({ message: "Unauthorized" });
   }
 });
 

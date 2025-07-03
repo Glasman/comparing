@@ -38,7 +38,7 @@ function AllItems() {
               key={item.id}
               style={{ border: "2px solid black", width: "500px" }}
             >
-              <Link to={`/${item.id}`}>
+              <Link to={`/item/${item.id}`}>
                 <h2>Name: {item.name}</h2>
                 <img src={item.image_url} />
               </Link>
@@ -49,7 +49,7 @@ function AllItems() {
               key={item.id}
               style={{ border: "2px solid black", width: "500px" }}
             >
-              <Link to={`/${item.id}`}>
+              <Link to={`/item/${item.id}`}>
                 <h2>Name: {item.name}</h2>
                 <img src={item.image_url} />
               </Link>

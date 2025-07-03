@@ -13,17 +13,20 @@ import AdminApprove from "./Components/AdminApprove";
 import AllItemsInCategory from "./Components/AllItemsInCategory";
 
 function App() {
-  const [user, setUser] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [token, setToken] = useState(window.localStorage.getItem("TOKEN"));
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(
+    window.localStorage.getItem("TOKEN") || null
+  );
 
   useEffect(() => {
     const token = localStorage.getItem("TOKEN");
+    console.log("TOKEN", token);
     if (!token) {
-      // return;
-      console.log("no token");
+      setUser(null);
+      return;
     }
-    async function getMe() {
+
+    async function fetchUser() {
       try {
         const { data } = await axios.get("/api/users/me", {
           headers: {
@@ -36,7 +39,7 @@ function App() {
         console.error(error);
       }
     }
-    getMe();
+    fetchUser();
   }, [token]);
 
   return (
@@ -44,14 +47,19 @@ function App() {
       <Navbar user={user} setToken={setToken} />
       {/* will need to replace with extended if/else for admin view */}
       {/* Ensure that users have navbar buttons that match up to their respective routes */}
-      {user === "loggedIn" ? (
+      {user ? (
         <Routes>
           <Route path="/" element={<AllItems />} />
+          {user?.is_admin && (
+            <Route
+              path="/adminapproval"
+              element={<AdminApprove is_admin={user.is_admin} />}
+            />
+          )}
           <Route path="/approved" element={<AllApprovedItems />} />
-          <Route path="/unapproved" element={<AdminApprove />} />
           <Route path="/createItems" element={<CreateItems />} />
           <Route path="/category/:category" element={<AllItemsInCategory />} />
-          <Route path="/:id" element={<SingleItem />} />
+          <Route path="/item/:id" element={<SingleItem />} />
         </Routes>
       ) : (
         <Routes>
@@ -61,7 +69,7 @@ function App() {
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/register" element={<Register setToken={setToken} />} />
           <Route path="/category/:category" element={<AllItemsInCategory />} />
-          <Route path="/:id" element={<SingleItem />} />
+          <Route path="/item/:id" element={<SingleItem />} />
         </Routes>
       )}
     </div>
