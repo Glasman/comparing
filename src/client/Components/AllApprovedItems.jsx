@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 function AllApprovedItems() {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
+  const [grouped, setGrouped] = useState({});
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const filtered = items.filter((item) => {
     return (
@@ -17,6 +19,15 @@ function AllApprovedItems() {
     const getItems = async () => {
       try {
         const { data: foundItems } = await axios.get("/api/items/approved");
+
+        const groups = {};
+        for (let item of foundItems) {
+          const key = item.category.toLowerCase();
+          if (!groups[key]) groups[key] = [];
+          groups[key].push(item);
+        }
+
+        setGrouped(groups);
         setItems(foundItems);
       } catch (error) {
         console.error(error);
@@ -24,6 +35,7 @@ function AllApprovedItems() {
     };
     getItems();
   }, []);
+  console.log("grouped:", grouped);
   return (
     <div>
       <h2>All Items!</h2>
@@ -32,7 +44,20 @@ function AllApprovedItems() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {search.length == 0
+      {Object.entries(grouped).map(([category, items]) => {
+        return (
+          <div key={category}>
+            <h1>{category}</h1>
+            {items.map((item) => {
+              <div key={item.id}>
+                <p>{item.name}</p>
+              </div>;
+            })}
+          </div>
+        );
+      })}
+
+      {/* {search.length == 0
         ? items.map((item) => (
             <div
               key={item.id}
@@ -54,7 +79,7 @@ function AllApprovedItems() {
                 <img src={item.image_url} />
               </Link>
             </div>
-          ))}
+          ))} */}
     </div>
   );
 }
