@@ -8,7 +8,7 @@ import {
   getUnapprovedItems,
   createManyItems,
   getItemByCategory,
-  approveItemById
+  approveItemById,
 } from "../../db/items.js";
 import verifyToken from "../util.js";
 
@@ -108,8 +108,8 @@ router.get("/category/:category", async (req, res) => {
 router.post("/approve/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const item = await approveItemById(id)
-    res.status(200).json({success: true, item})
+    const item = await approveItemById(id);
+    res.status(200).json({ success: true, item });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

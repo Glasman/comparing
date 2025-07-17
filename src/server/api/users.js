@@ -16,7 +16,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 router.get("/me", verifyToken, async (req, res) => {
   try {
     const user = await getUserByID(req.user.id);

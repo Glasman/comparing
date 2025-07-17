@@ -20,7 +20,7 @@ function AllApprovedItemsByCategory() {
       try {
         const { data: foundItems } = await axios.get("/api/items/approved");
 
-        //goes through foundItems object and creates an object full of arrays 
+        //goes through foundItems object and creates an object full of arrays
         //that are sorted by category
         //(key:value == category:[array full of objects that belong to that category])
         const groups = {};
@@ -49,7 +49,7 @@ function AllApprovedItemsByCategory() {
       />
       {Object.entries(grouped).map(([category, items]) => {
         const representative = items[0];
-       
+
         return (
           <div
             key={category}
