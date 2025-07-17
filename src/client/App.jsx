@@ -43,7 +43,7 @@ function App() {
   }, [token]);
 
   return (
-    <div className="App">
+    <div className="App app-background">
       <Navbar user={user} setToken={setToken} />
       {/* will need to replace with extended if/else for admin view */}
       {/* Ensure that users have navbar buttons that match up to their respective routes */}

@@ -1,3 +1,13 @@
+/* #30C5FF "deep sky blue"
+#2A2D34 gunmetal
+#5C946E sea green
+#80C2AF cambridge blue
+#A0DDE6 non photo blue
+*/
+
+
+
+
 img {
   max-width: 450px;
   max-height: 450px;
@@ -21,4 +31,8 @@ img {
 textarea {
   height: 150px;
   width: 300px
+}
+
+input {
+  background-color: #A0DDE6
 }
