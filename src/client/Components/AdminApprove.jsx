@@ -9,9 +9,9 @@ function AdminApprove({ is_admin }) {
 
   useEffect(() => {
     if (!is_admin) {
-      navigate('/')
+      navigate("/");
     }
-  }, [is_admin, navigate])
+  }, [is_admin, navigate]);
 
   useEffect(() => {
     const getItems = async () => {
@@ -24,6 +24,15 @@ function AdminApprove({ is_admin }) {
     };
     getItems();
   }, []);
+
+  const handleApprove = async (id) => {
+    try {
+      await axios.post(`/api/items/approve/${id}`);
+      setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div>
@@ -38,6 +47,9 @@ function AdminApprove({ is_admin }) {
               <h2>{item.name}</h2>
               <img src={item.image_url} />
             </Link>
+            <button onClick={() => handleApprove(item.id)}>
+              Approve this item
+            </button>
           </div>
         ))
       ) : (

@@ -126,6 +126,23 @@ const getItemByCategory = async (category) => {
   }
 };
 
+const approveItemById = async (id) => {
+  try {
+    const { rows } = await client.query(
+      `UPDATE items
+      SET admin_approved = true
+      WHERE id = $1
+      RETURNING *
+      `,
+      [id]
+    );
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   createItem,
   createManyItems,
@@ -134,4 +151,5 @@ export {
   getItemByID,
   getUnapprovedItems,
   getItemByCategory,
+  approveItemById,
 };
