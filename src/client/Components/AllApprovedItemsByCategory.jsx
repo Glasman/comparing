@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function AllApprovedItems() {
+function AllApprovedItemsByCategory() {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [grouped, setGrouped] = useState({});
@@ -125,4 +125,4 @@ function AllApprovedItems() {
   );
 }
 
-export default AllApprovedItems;
+export default AllApprovedItemsByCategory;

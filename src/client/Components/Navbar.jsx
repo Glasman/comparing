@@ -18,6 +18,9 @@ function Navbar({ user, setToken }) {
           <Link to="/">
             <button>All Items</button>
           </Link>
+          <Link to="/approved">
+            <button>All Items By Category</button>
+          </Link>
           <Link to="/createItems">
             <button>Add Items</button>
           </Link>
@@ -33,6 +36,9 @@ function Navbar({ user, setToken }) {
         <div>
           <Link to="/">
             <button>All Items</button>
+          </Link>
+           <Link to="/approved">
+            <button>All Items By Category</button>
           </Link>
           <Link to="/register">
             <button>Register</button>

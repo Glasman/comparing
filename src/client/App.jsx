@@ -7,7 +7,7 @@ import SingleItem from "./Components/SingleItem";
 import Navbar from "./Components/Navbar";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import AllApprovedItems from "./Components/AllApprovedItems";
+import AllApprovedItemsByCategory from "./Components/AllApprovedItemsByCategory";
 import CreateItems from "./Components/CreateItems";
 import AdminApprove from "./Components/AdminApprove";
 import AllItemsInCategory from "./Components/AllItemsInCategory";
@@ -56,7 +56,7 @@ function App() {
               element={<AdminApprove is_admin={user.is_admin} />}
             />
           )}
-          <Route path="/approved" element={<AllApprovedItems />} />
+          <Route path="/approved" element={<AllApprovedItemsByCategory />} />
           <Route path="/createItems" element={<CreateItems />} />
           <Route path="/category/:category" element={<AllItemsInCategory />} />
           <Route path="/item/:id" element={<SingleItem />} />
@@ -64,7 +64,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<AllItems />} />
-          <Route path="/approved" element={<AllApprovedItems />} />
+          <Route path="/approved" element={<AllApprovedItemsByCategory />} />
           <Route path="/unapproved" element={<AdminApprove />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/register" element={<Register setToken={setToken} />} />
