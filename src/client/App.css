@@ -8,3 +8,16 @@
 .app-background {
   background-color: #80C2AF
 }
+
+.items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.item-card {
+  border: 2px solid black;
+  width: 300px;
+  background-color: #80C2AF
+}

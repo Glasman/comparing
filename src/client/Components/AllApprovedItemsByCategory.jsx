@@ -57,7 +57,7 @@ function AllApprovedItemsByCategory() {
             onMouseLeave={() => setHoveredCategory(null)}
             style={{
               position: "relative",
-              width: "200px",
+              width: "300px",
               border: "2px solid black",
               padding: "10px",
             }}
