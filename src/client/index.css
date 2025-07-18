@@ -5,8 +5,13 @@
 #A0DDE6 non photo blue
 */
 
-
-
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #80c2af;
+}
 
 img {
   max-width: 450px;
@@ -30,9 +35,13 @@ img {
 
 textarea {
   height: 150px;
-  width: 300px
+  width: 300px;
 }
 
 input {
-  background-color: #A0DDE6
+  background-color: #a0dde6;
+}
+
+button {
+  background-color: #a0dde6;
 }
