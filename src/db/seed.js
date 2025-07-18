@@ -115,6 +115,54 @@ const syncAndSeed = async () => {
       mark.id,
       true
     );
+    await createItem(
+      "Cotton",
+      "https://i.imgur.com/hPXT4Dz.jpeg",
+      "A material from the cotton plant. Warm but can be expensive, and can get cold when wet.",
+      "Clothing material",
+      mark.id,
+      true
+    );
+    await createItem(
+      "Wool",
+      "https://i.imgur.com/OZrNJUw.jpeg",
+      "Wool sheared from sheep. Stays warm when wet but can be expensive due to it's slower rate of growth.",
+      "Clothing material",
+      mark.id,
+      true
+    );
+    await createItem(
+      "Synthetic material",
+      "https://extrabutterny.com/cdn/shop/files/FN7668-060-1_95a82a4b-caef-47ff-9169-98a2cf78a027.jpg?v=1718384369",
+      "Materials like nylon, cheap but tear easily and are not as good for keeping warm as cotton or wool.",
+      "Clothing material",
+      mark.id,
+      true
+    );
+    await createItem(
+      "Coupe",
+      "https://i.imgur.com/k8K1atk.jpeg",
+      "A coupe is just a car with 2 doors. It could be done to make it faster in sporty cars or cheaper to be made more affordable.",
+      "Vehicle",
+      mark.id,
+      true
+    );
+    await createItem(
+      "Sedan",
+      "https://i.imgur.com/aaGLE2ug.jpg",
+      "A sedan is a car with 4 doors to allow for easier access to the back seat for families and so on.",
+      "Vehicle",
+      mark.id,
+      true
+    );
+    await createItem(
+      "Pickup Truck",
+      "https://i.imgur.com/pSx08Nj.jpeg",
+      "A pickup truck has a big bed in the back for hauling, although they can be gas guzzlers sometimes.",
+      "Vehicle",
+      mark.id,
+      true
+    );
     console.log("Items created");
     const food = await createTag("Food");
     await createTag("Cars");
