@@ -25,19 +25,21 @@ function AllItems() {
     getItems();
   }, []);
   return (
-    <div>
+    <div className="items-and-searchbar">
       <h2>All Items!</h2>
-      <input
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="search-bar">
+        <input
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
       <div className="items-grid">
         {search.length == 0
           ? items.map((item) => (
               <div key={item.id} className="item-card">
                 <Link to={`/item/${item.id}`}>
-                  <h2>Name: {item.name}</h2>
+                  <h2>{item.name}</h2>
                   <img src={item.image_url} />
                 </Link>
               </div>
