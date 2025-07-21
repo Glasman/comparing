@@ -9,7 +9,8 @@ function AllItems() {
   const filtered = items.filter((item) => {
     return (
       item.name?.toLowerCase().includes(search.toLowerCase()) ||
-      item.description?.toLowerCase().includes(search.toLocaleLowerCase())
+      item.description?.toLowerCase().includes(search.toLocaleLowerCase()) ||
+      item.category?.toLowerCase().includes(search.toLowerCase())
     );
   });
 
