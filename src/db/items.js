@@ -55,18 +55,27 @@ const createItem = async (
   description,
   category,
   item_id,
-  admin_approved = false
+  admin_approved = false,
+  category_description
 ) => {
   try {
     const {
       rows: [item],
     } = await client.query(
       `
-             INSERT INTO items (name, image_url, description, category, user_id, admin_approved) 
-             VALUES ($1, $2, $3, $4, $5, $6)
+             INSERT INTO items (name, image_url, description, category, user_id, admin_approved, category_description) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
              RETURNING *
               `,
-      [name, image_url, description, category, item_id, admin_approved]
+      [
+        name,
+        image_url,
+        description,
+        category,
+        item_id,
+        admin_approved,
+        category_description,
+      ]
     );
     return item;
   } catch (error) {
@@ -82,24 +91,30 @@ const createManyItems = async (items, user_id) => {
     const params = [];
 
     items.forEach((item, index) => {
-      const offset = index * 6;
+      const offset = index * 7;
       values.push(
         `($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4}, $${
           offset + 5
-        }, $${offset + 6})`
+        }, $${offset + 6}, $${offset + 7})`
       );
+      console.log("item", item)
+
       params.push(
         item.name,
         item.imageURL,
         item.description,
         item.category,
         user_id,
-        false
+        false,
+        // item.category_description
+        item.categoryDescription
       );
     });
 
+
+    //fix this to prevengt sql injections
     const query = `
-    INSERT INTO items (name, image_url, description, category, user_id, admin_approved)
+    INSERT INTO items (name, image_url, description, category, user_id, admin_approved, category_description)
     VALUES ${values.join(", ")}
     RETURNING *
     `;

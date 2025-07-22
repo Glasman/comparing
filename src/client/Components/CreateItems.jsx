@@ -3,6 +3,7 @@ import axios from "axios";
 
 function CreateItems() {
   const [category, setCategory] = useState("");
+  const [categoryDescription, setCategoryDescription] = useState("");
   const [entries, setEntries] = useState([
     { name: "", imageURL: "", description: "" },
   ]);
@@ -22,7 +23,10 @@ function CreateItems() {
     const payload = entries.map((entry) => ({
       ...entry,
       category,
+      // category_description: categoryDescription
+      categoryDescription
     }));
+    console.log("payload", payload)
     try {
       await axios.post("/api/items/many", payload, {
         headers: {
@@ -53,6 +57,15 @@ function CreateItems() {
           onChange={(e) => setCategory(e.target.value)}
           className="form-field"
           required
+        />
+        <label>Category Description:</label>
+        <textarea
+          placeholder="Provide a description of the category as a whole here."
+          required
+          value={categoryDescription}
+          onChange={(e) => {
+            setCategoryDescription(e.target.value)
+          }}
         />
 
         {entries.map((entry, index) => (

@@ -8,10 +8,11 @@ function AllApprovedItemsByCategory() {
   const [grouped, setGrouped] = useState({});
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
-  const filtered = items.filter((item) => {
+const filtered = items.filter((item) => {
     return (
       item.name?.toLowerCase().includes(search.toLowerCase()) ||
-      item.description?.toLowerCase().includes(search.toLocaleLowerCase())
+      item.description?.toLowerCase().includes(search.toLocaleLowerCase()) ||
+      item.category?.toLowerCase().includes(search.toLowerCase())
     );
   });
 
@@ -63,7 +64,8 @@ function AllApprovedItemsByCategory() {
                 padding: "10px",
               }}
             >
-              <Link to={`/item/${representative.id}`}>
+              {/* <Link to={`/item/${representative.id}`}> */}
+              <Link to={`/category/${representative.category}`}>
                 <h3>{representative.name}</h3>
                 <img
                   src={representative.image_url}

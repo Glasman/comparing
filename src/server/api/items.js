@@ -48,7 +48,7 @@ router.get("/unapproved", async (req, res) => {
 // /api/items
 router.post("/", verifyToken, async (req, res) => {
   try {
-    const { name, image_url, description, category } = req.body;
+    const { name, image_url, description, category, category_description } = req.body;
     const user_id = req.user.id;
     //default admin_approved value is false so that all submitted items will be false until admin approves them
     const newItem = await createItem(
@@ -57,7 +57,8 @@ router.post("/", verifyToken, async (req, res) => {
       description,
       category,
       user_id,
-      false
+      false,
+      category_description
     );
     res.status(201).send(newItem);
   } catch (error) {
@@ -72,7 +73,8 @@ router.post("/many", verifyToken, async (req, res) => {
   const user_id = req.user.id;
 
   try {
-    const insertedItems = await createManyItems(items, user_id);
+    console.log("api items", items)
+    const insertedItems = await createManyItems(items, user_id); 
     res.status(201).send(insertedItems);
   } catch (error) {
     console.error(error);

@@ -38,7 +38,8 @@ const createTables = async () => {
         description TEXT NOT NULL,
         category TEXT NOT NULL,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-        admin_approved BOOLEAN DEFAULT FALSE
+        admin_approved BOOLEAN DEFAULT FALSE,
+        category_description TEXT NOT NULL
         );
 
         CREATE TABLE tags (
@@ -81,7 +82,8 @@ const syncAndSeed = async () => {
       "Plain ol white rice",
       "Rice",
       mark.id,
-      false
+      false,
+      "A staple grain that is popular in many cultures and has many different forms."
     );
     await createItem(
       "Brown rice",
@@ -89,7 +91,8 @@ const syncAndSeed = async () => {
       "Nutrient rich brown rice",
       "Rice",
       mark.id,
-      true
+      true,
+      "A staple grain that is popular in many cultures and has many different forms."
     );
     await createItem(
       "Long grain rice",
@@ -97,7 +100,8 @@ const syncAndSeed = async () => {
       "Rice with long grains",
       "Rice",
       mark.id,
-      true
+      true,
+      "A staple grain that is popular in many cultures and has many different forms."
     );
     await createItem(
       "Medium grain rice",
@@ -105,7 +109,8 @@ const syncAndSeed = async () => {
       "Rice with medium grains",
       "Rice",
       mark.id,
-      true
+      true,
+      "A staple grain that is popular in many cultures and has many different forms."
     );
     await createItem(
       "Short grain rice",
@@ -113,7 +118,8 @@ const syncAndSeed = async () => {
       "Rice with short grains",
       "Rice",
       mark.id,
-      true
+      true,
+      "A staple grain that is popular in many cultures and has many different forms."
     );
     await createItem(
       "Cotton",
@@ -121,7 +127,8 @@ const syncAndSeed = async () => {
       "A material from the cotton plant. Warm but can be expensive, and can get cold when wet.",
       "Clothing material",
       mark.id,
-      true
+      true,
+      "A material that is used for, among other things, making clothing."
     );
     await createItem(
       "Wool",
@@ -129,7 +136,8 @@ const syncAndSeed = async () => {
       "Wool sheared from sheep. Stays warm when wet but can be expensive due to it's slower rate of growth.",
       "Clothing material",
       mark.id,
-      true
+      true,
+      "A material that is used for, among other things, making clothing."
     );
     await createItem(
       "Synthetic material",
@@ -137,7 +145,8 @@ const syncAndSeed = async () => {
       "Materials like nylon, cheap but tear easily and are not as good for keeping warm as cotton or wool.",
       "Clothing material",
       mark.id,
-      true
+      true,
+      "A material that is used for, among other things, making clothing."
     );
     await createItem(
       "Coupe",
@@ -145,7 +154,8 @@ const syncAndSeed = async () => {
       "A coupe is just a car with 2 doors. It could be done to make it faster in sporty cars or cheaper to be made more affordable.",
       "Vehicle",
       mark.id,
-      true
+      true,
+      "A motorized vehicle, often powered by gasoline, which can be used to transport people and goods."
     );
     await createItem(
       "Sedan",
@@ -153,7 +163,8 @@ const syncAndSeed = async () => {
       "A sedan is a car with 4 doors to allow for easier access to the back seat for families and so on.",
       "Vehicle",
       mark.id,
-      true
+      true,
+      "A motorized vehicle, often powered by gasoline, which can be used to transport people and goods."
     );
     await createItem(
       "Pickup Truck",
@@ -161,7 +172,8 @@ const syncAndSeed = async () => {
       "A pickup truck has a big bed in the back for hauling, although they can be gas guzzlers sometimes.",
       "Vehicle",
       mark.id,
-      true
+      true,
+      "A motorized vehicle, often powered by gasoline, which can be used to transport people and goods."
     );
     console.log("Items created");
     const food = await createTag("Food");
