@@ -64,9 +64,8 @@ const filtered = items.filter((item) => {
                 padding: "10px",
               }}
             >
-              {/* <Link to={`/item/${representative.id}`}> */}
               <Link to={`/category/${representative.category}`}>
-                <h3>{representative.name}</h3>
+                <h3>{representative.category}</h3>
                 <img
                   src={representative.image_url}
                   alt={representative.name}
@@ -77,17 +76,18 @@ const filtered = items.filter((item) => {
               {hoveredCategory === category &&
                 items.map((item, index) => {
                   const angle = (index / items.length) * 2 * Math.PI;
-                  const radius = 60;
+                  const radius = 70;
                   const x = Math.cos(angle) * radius;
                   const y = Math.sin(angle) * radius;
                   return (
+                    <Link to={`/item/${item.id}`}>
                     <img
                       key={item.id}
                       src={item.image_url}
                       alt={item.name}
                       style={{
-                        width: "50px",
-                        height: "50px",
+                        width: "60px",
+                        height: "60px",
                         position: "absolute",
                         top: 100 + y,
                         left: 100 + x,
@@ -95,6 +95,7 @@ const filtered = items.filter((item) => {
                         border: "2px solid gray",
                       }}
                     />
+                    </Link>
                   );
                 })}
             </div>
