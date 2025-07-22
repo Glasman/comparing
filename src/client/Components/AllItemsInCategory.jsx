@@ -33,7 +33,7 @@ function AllItemsInCategory() {
           key={item.id}
           style={{ border: "2px solid black", width: "500px" }}
         >
-          <h2>name: {item.name}</h2>
+          <h2>{item.name}</h2>
           <img src={item.image_url} />
         </div>
       ))}

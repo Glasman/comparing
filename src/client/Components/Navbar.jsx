@@ -16,10 +16,10 @@ function Navbar({ user, setToken }) {
       {user ? (
         <div>
           <Link to="/">
-            <button>All Items</button>
-          </Link>
-          <Link to="/approved">
             <button>All Items By Category</button>
+          </Link>
+          <Link to="/allitems">
+            <button>All Items</button>
           </Link>
           <Link to="/createItems">
             <button>Add Items</button>
@@ -34,11 +34,11 @@ function Navbar({ user, setToken }) {
         </div>
       ) : (
         <div>
-          <Link to="/">
-            <button>All Items</button>
-          </Link>
-           <Link to="/approved">
+           <Link to="/">
             <button>All Items By Category</button>
+          </Link>
+          <Link to="/allitems">
+            <button>All Items</button>
           </Link>
           <Link to="/register">
             <button>Register</button>

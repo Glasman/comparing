@@ -49,22 +49,22 @@ function App() {
       {/* Ensure that users have navbar buttons that match up to their respective routes */}
       {user ? (
         <Routes>
-          <Route path="/" element={<AllItems />} />
+          <Route path="/" element={<AllApprovedItemsByCategory />} />
           {user?.is_admin && (
             <Route
               path="/adminapproval"
               element={<AdminApprove is_admin={user.is_admin} />}
             />
           )}
-          <Route path="/approved" element={<AllApprovedItemsByCategory />} />
+          <Route path="/allitems" element={<AllItems />} />
           <Route path="/createItems" element={<CreateItems />} />
           <Route path="/category/:category" element={<AllItemsInCategory />} />
           <Route path="/item/:id" element={<SingleItem />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" element={<AllItems />} />
-          <Route path="/approved" element={<AllApprovedItemsByCategory />} />
+          <Route path="/"  element={<AllApprovedItemsByCategory />}/>
+          <Route path="/allitems" element={<AllItems />} />
           <Route path="/unapproved" element={<AdminApprove />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/register" element={<Register setToken={setToken} />} />
