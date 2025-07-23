@@ -1,6 +1,6 @@
 import { client } from "./client.js";
 import { createUser } from "./users.js";
-import { createItem } from "./items.js";
+import { createItem, createManyItems } from "./items.js";
 import { createTag } from "./tags.js";
 import { addTagToItem } from "./item_tag.js";
 import bcrypt from "bcryptjs";
@@ -175,6 +175,31 @@ const syncAndSeed = async () => {
       true,
       "A motorized vehicle, often powered by gasoline, which can be used to transport people and goods."
     );
+
+    await createManyItems([
+      {
+        name: "Cats",
+        imageURL:
+          "/images/pepper.jpeg",
+          description: 'Cats are considered by many to be a great low maintenance pet. They can keeo to themselves sometimes but if they learn to trust you they can show you lots of love in their own unique way.',
+          category: 'Pets',
+          categoryDescription: "Pets are animals that humans keep for companionship, as well help around the house or homestead."
+      },
+      {
+        name: "Dogs",
+        imageURL: "/images/dogs.webp",
+          description: 'Dogs are loyal companions and of of the oldest domesticated animals. Sometimes used for work such as herding, or just for companionship, dogs are considered a favorite pet by many.',
+          category: 'Pets',
+          categoryDescription: "Pets are animals that humans keep for companionship, as well help around the house or homestead."
+      },
+      {
+        name: "Birds",
+        imageURL: "https://i.imgur.com/xg2OJ7n.jpeg",
+          description: 'Birds are very unique animals kept by pets as many around the globe. They can be very intelligent and have very unique, yet fascinating, interpersonal lives. Fun fact-birds are the closest living relative to dinosaurs!',
+          category: 'Pets',
+          categoryDescription: "Pets are animals that humans keep for companionship, as well help around the house or homestead."
+      }
+    ], 4);
     console.log("Items created");
     const food = await createTag("Food");
     await createTag("Cars");

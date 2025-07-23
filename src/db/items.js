@@ -97,7 +97,6 @@ const createManyItems = async (items, user_id) => {
           offset + 5
         }, $${offset + 6}, $${offset + 7})`
       );
-      console.log("item", item)
 
       params.push(
         item.name,
@@ -111,8 +110,8 @@ const createManyItems = async (items, user_id) => {
       );
     });
 
-
-    //fix this to prevengt sql injections
+    //values.join is just a long string of numbers (e.g. ($1, $2, etc)) and
+    //is safe from injection attacks
     const query = `
     INSERT INTO items (name, image_url, description, category, user_id, admin_approved, category_description)
     VALUES ${values.join(", ")}
