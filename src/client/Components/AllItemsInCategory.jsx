@@ -13,20 +13,13 @@ function AllItemsInCategory() {
         const { data: foundItems } = await axios.get(
           `/api/items/category/${category}`
         );
-        console.log("found items before setItems:", foundItems);
         setItems(foundItems);
-        console.log(items);
       } catch (error) {
         console.error(error);
       }
     };
     getItems();
-    console.log(items);
   }, [category]);
-
-  useEffect(() => {
-    console.log("Updated items:", items);
-  }, [items]);
 
   return (
     <div>

@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("TOKEN");
-    console.log("TOKEN", token);
     if (!token) {
       setUser(null);
       return;
@@ -33,7 +32,6 @@ function App() {
             Authorization: "Bearer " + token,
           },
         });
-        console.log("data", data);
         setUser(data.user);
       } catch (error) {
         console.error(error);

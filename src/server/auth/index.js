@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
     );
     res.status(201).send({ token });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 

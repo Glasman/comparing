@@ -26,7 +26,6 @@ function CreateItems() {
       // category_description: categoryDescription
       categoryDescription
     }));
-    console.log("payload", payload)
     try {
       await axios.post("/api/items/many", payload, {
         headers: {

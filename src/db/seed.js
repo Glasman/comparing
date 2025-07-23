@@ -14,7 +14,7 @@ const dropTables = async () => {
             DROP TABLE IF EXISTS users;
             `);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

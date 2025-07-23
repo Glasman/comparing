@@ -73,7 +73,6 @@ router.post("/many", verifyToken, async (req, res) => {
   const user_id = req.user.id;
 
   try {
-    console.log("api items", items)
     const insertedItems = await createManyItems(items, user_id); 
     res.status(201).send(insertedItems);
   } catch (error) {

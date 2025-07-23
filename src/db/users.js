@@ -16,7 +16,7 @@ const createUser = async (name, password, is_admin = false) => {
     );
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -27,7 +27,7 @@ const getAllUsers = async () => {
             `);
     return rows;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -41,7 +41,7 @@ const getUserByID = async (id) => {
               `);
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -55,7 +55,7 @@ const getUserByUsername = async (username) => {
     );
     return user;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
