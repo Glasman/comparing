@@ -59,7 +59,7 @@ const filtered = items.filter((item) => {
               onMouseLeave={() => setHoveredCategory(null)}
               style={{
                 position: "relative",
-                width: "300px",
+                width: "400px",
                 border: "2px solid black",
                 padding: "10px",
               }}
