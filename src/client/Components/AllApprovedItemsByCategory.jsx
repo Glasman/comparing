@@ -85,14 +85,11 @@ const filtered = items.filter((item) => {
                       key={item.id}
                       src={item.image_url}
                       alt={item.name}
+                      className="item-circle-image"
                       style={{
-                        width: "60px",
-                        height: "60px",
-                        position: "absolute",
-                        top: 100 + y,
-                        left: 100 + x,
-                        borderRadius: "50%",
-                        border: "2px solid gray",
+                        top: `${150 + y}px`,
+                        left: `${150 + x}px`,
+                    
                       }}
                     />
                     </Link>

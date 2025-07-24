@@ -6,7 +6,7 @@
 */
 
 .app-background {
-  background-color: #80C2AF
+  background-color: #80c2af;
 }
 
 .items-grid {
@@ -19,7 +19,7 @@
 .item-card {
   border: 2px solid black;
   width: 300px;
-  background-color: #80C2AF
+  background-color: #80c2af;
 }
 
 .items-and-searchbar {
@@ -29,5 +29,13 @@
 }
 
 .search-bar {
-  margin-bottom: 1rem
+  margin-bottom: 1rem;
+}
+
+.item-circle-image {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid gray;
 }
